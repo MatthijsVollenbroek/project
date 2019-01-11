@@ -1,5 +1,5 @@
 # Project voorstel
-
+### Matthijs Vollenbroek, Sam Tegel, Thomas Cool, Tim Zwiers
 ## Samenvatting
 We maken een sociale media site waarop foto’s en GIFs gedeeld kunnen worden. Je kan die posts liken en disliken. Er is een “hall of fame” tab met de meest gelikete foto’s en GIFs van die dag en een “hall of shame” met de meest gedislikete. Je moet mensen kunnen volgen. Alleen de meest gelikete post en de meeste gedislikete post van het profiel van de gebruiker blijven bestaan, de rest verdwijnt na 3 dagen.
 
