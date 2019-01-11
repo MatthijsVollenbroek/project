@@ -39,3 +39,7 @@ phpliteadmin voor database
 -	Posts opzoeken, want je moet een manier van filteren bedenken die vrij lastig te maken is.
 -	Posts verwijderen naar drie als ze niet meest gelikete/gedislikete zijn is wel lastig om te programmeren in database.
 -	GIFs posten met API, hoe dat geprogrammeerd moet worden is nog niet helemaal duidelijk.
+
+## Schetsen:
+![Schets van layout homepagina](images/hoofdscherm.jpg)
+![Schets van profiel layout](images/profielpagina.jpg)
