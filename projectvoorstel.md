@@ -41,5 +41,5 @@ phpliteadmin voor database
 -	GIFs posten met API, hoe dat geprogrammeerd moet worden is nog niet helemaal duidelijk.
 
 ## Schetsen:
-![Schets van layout homepagina](images/hoofdscherm.jpg)
-![Schets van profiel layout](images/profielpagina.jpg)
+![Schets van layout homepagina](images/hoofdscherm.jpeg)
+![Schets van profiel layout](images/profielpagina.jpeg)
