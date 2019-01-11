@@ -41,5 +41,7 @@ phpliteadmin voor database
 -	GIFs posten met API, hoe dat geprogrammeerd moet worden is nog niet helemaal duidelijk.
 
 ## Schetsen:
+Hier een schets van de hoofdpagina die een ingelogde gebruiker ziet:
 ![Schets van layout homepagina](images/hoofdscherm.jpeg)
+Een schets van de layout als een profiel wordt weergegeven:
 ![Schets van profiel layout](images/profielpagina.jpeg)
