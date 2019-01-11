@@ -24,7 +24,8 @@ We maken een sociale media site waarop foto’s en GIFs gedeeld kunnen worden. J
 -	Posts opzoeken
 ## Databronnen:
 API voor GIFs = http://api.giphy.com
-Afhankelijkheden:
+
+## Afhankelijkheden:
 Bootstrap voor ontwerp
 phpliteadmin voor database
 
