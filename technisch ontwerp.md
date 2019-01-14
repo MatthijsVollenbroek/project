@@ -102,3 +102,10 @@
 - most_disliked: ophalen welke post meest gedisliked is op account
 - profile_picture: inladen profielfoto
 - load_posts: het inladen van de 10 posts (most liked, most disliked of most recent)
+
+## Views:
+
+### NOG TOEVOEGEN!
+
+## Plugins: 
+### NOG TOEVOEGEN!
