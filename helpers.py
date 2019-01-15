@@ -43,5 +43,6 @@ def register(user_name, password):
     hash = pwd_context.hash(password)
     db.execute("Insert INTO users (username, password) VALUES(:username, :password)", username=user_name, password=hash)
     userid = db.execute("SELECT user_id FROM users WHERE username = :username", username=user_name)
-    session["user_id"] = userid[0]['id']
-    return redirect(url_for("homepage"))
+    return userid[0]['user_id']
+
+def post_like(user_id, post_id)
