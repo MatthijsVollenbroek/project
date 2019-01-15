@@ -105,7 +105,7 @@
 
 ## Views:
 
-![schets](images/FinalProj.png)
+![Layout](images/FinalProj.png)
 
 ## Plugins: 
 - Bootstrap (layout maken).
