@@ -105,7 +105,7 @@
 
 ## Views:
 
-### NOG TOEVOEGEN!
+![Layout](images/Totaal plaatje.jpeg)
 
 ## Plugins: 
 - Bootstrap (layout maken).
