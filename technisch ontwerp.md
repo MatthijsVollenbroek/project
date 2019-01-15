@@ -108,4 +108,5 @@
 ### NOG TOEVOEGEN!
 
 ## Plugins: 
-### NOG TOEVOEGEN!
+- Bootstrap (layout maken).
+- MD Bootstrap (tabel sort functie).
