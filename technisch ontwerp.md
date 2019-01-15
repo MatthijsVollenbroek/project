@@ -83,14 +83,10 @@
 - Geen page refresh (Script?)
 
 @search (opzoeken profielen):
-- POST
+- GET en POST
 - Zoeken op profielnamen die de zoekterm bevatten.
-- Inladen meest overeenkomende profielen (max. 5(?))
-- Redirecten naar zoekresultatenpagina
-
-@search_results (zoekresultaten):
-- POST en GET
-- Zoekresultaten van search gebruiken om data uit database op te halen (profielfoto, aantal volgers en bio)
+- Sorteren op meest gelikete en meest gedislikete accounts.
+- Table van MD bootstrap.
 
 ## Models/helpers:
 
