@@ -105,7 +105,7 @@
 
 ## Views:
 
-![Layout](images/Totaal plaatje.jpeg)
+![Layout](images/Totaal Plaatje.png)
 
 ## Plugins: 
 - Bootstrap (layout maken).
