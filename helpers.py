@@ -41,8 +41,41 @@ def register(user_name, password):
         return False
     # wachtwoord encrypten
     hash = pwd_context.hash(password)
-    db.execute("Insert INTO users (username, password) VALUES(:username, :password)", username=user_name, password=hash)
+    db.execute("INSERT INTO users (username, password) VALUES(:username, :password)", username=user_name, password=hash)
     userid = db.execute("SELECT user_id FROM users WHERE username = :username", username=user_name)
     return userid[0]['user_id']
 
-def post_like(user_id, post_id)
+def post_like(user_id, post_id):
+    rating = already_rated(user_id, post_id)
+    if rating == False:
+        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 1", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1")
+        return True
+    # als user al dislike heeft gegeven op post
+    elif rating == 0:
+        db.execute("UPDATE likes_dislikes SET like_dislike = 1 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1 AND total_dislikes = total_dislikes - 1 AND dislikes_today = dislikes_today - 1 WHERE post_id = :post_id", post_id=post_id)
+        return True
+    # als user al like heeft gegeven op post
+    else:
+        return False
+def post_dislike(user_id, post_id):
+    rating = already_rated(user_id, post_id)
+    if rating == False:
+        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 0", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1")
+        return True
+    # als user al like heeft gegeven op post
+    elif rating == 1:
+        db.execute("UPDATE likes_dislikes SET like_dislike = 0 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes - 1 AND likes_today = likes_today - 1 AND total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1 WHERE post_id = :post_id", post_id=post_id)
+        return True
+    # als user al dislike heeft gegeven op post
+    else:
+        return False
+
+def already_rated(user_id, post_id):
+    rate = db.execute("SELECT like_dislike FROM likes_dislikes WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
+    if len(rate) == 0:
+        return False
+    return rate[0]["like_dislike"]
