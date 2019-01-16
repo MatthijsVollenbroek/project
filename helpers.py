@@ -56,7 +56,7 @@ def login(user_name, password):
         return False
     account = db.execute("SELECT * FROM users WHERE username = :username", username=user_name)
     # check dat username en wachtwoord goed zijn
-    if len(account) != 1 or not pwd_context.verify(password), account[0]["password"]):
+    if len(account) != 1 or not pwd_context.verify((password), account[0]["password"]):
         return False
     # inlogde gebruiker onthouden
     session["user_id"] = account[0]["user_id"]
