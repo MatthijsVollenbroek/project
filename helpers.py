@@ -45,6 +45,23 @@ def register(user_name, password):
     userid = db.execute("SELECT user_id FROM users WHERE username = :username", username=user_name)
     return userid[0]['user_id']
 
+def login(user_name, password):
+    # mogelijk user_id vergeten
+    session.clear()
+    # check of username ingevuld is
+    if not request.form.get("username"):
+        return False
+    # check of wachtwoord ingevuld is
+    elif not request.form.get("password"):
+        return False
+    account = db.execute("SELECT * FROM users WHERE username = :username", username=user_name)
+    # check dat username en wachtwoord goed zijn
+    if len(account) != 1 or not pwd_context.verify(password), account[0]["password"]):
+        return False
+    # inlogde gebruiker onthouden
+    session["user_id"] = account[0]["user_id"]
+    return True
+
 def post_like(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
