@@ -49,15 +49,15 @@ def login(user_name, password):
     # mogelijk user_id vergeten
     session.clear()
     # check of username ingevuld is
-    if not request.form.get("username"):
-        return False
+    if user_name == None:
+        return 0
     # check of wachtwoord ingevuld is
-    elif not request.form.get("password"):
-        return False
+    elif password == None:
+        return 1
     account = db.execute("SELECT * FROM users WHERE username = :username", username=user_name)
     # check dat username en wachtwoord goed zijn
     if len(account) != 1 or not pwd_context.verify((password), account[0]["password"]):
-        return False
+        return 2
     # inlogde gebruiker onthouden
     session["user_id"] = account[0]["user_id"]
     return True
