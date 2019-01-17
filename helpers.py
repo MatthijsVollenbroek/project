@@ -96,3 +96,18 @@ def already_rated(user_id, post_id):
     if len(rate) == 0:
         return False
     return rate[0]["like_dislike"]
+
+
+def follow(user_id, user_id_follows):
+    # zorgt ervoor dat user persoon volgt
+    if already_follows(user_id, user_id_follows) == True:
+        return False
+    db.execute("INSERT INTO followers (user_id, follows) VALUES(:user_id, :follows)", user_id=user_id, follows=user_id_follows)
+    return True
+
+def already_follows(user_id, user_id_follows):
+    # check of user persoon al volgt
+    check = db.execute("SELECT * FROM followers WHERE user_id = :user_id AND follows = :follows", user_id=user_id, follows=user_id_follows)
+    if len(check) != 0:
+        return True
+    return False
