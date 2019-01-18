@@ -50,14 +50,14 @@ def login_user(user_name, password):
     session.clear()
     # check of username ingevuld is
     if user_name == None:
-        return 0
+        return -1
     # check of wachtwoord ingevuld is
     elif password == None:
-        return 1
+        return -2
     account = db.execute("SELECT * FROM users WHERE username = :username", username=user_name)
     # check dat username en wachtwoord goed zijn
     if len(account) != 1 or not pwd_context.verify((password), account[0]["password"]):
-        return 2
+        return -3
     # inlogde gebruiker onthouden
     session["user_id"] = account[0]["user_id"]
     return True

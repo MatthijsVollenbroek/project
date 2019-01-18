@@ -55,14 +55,14 @@ def login():
 
         check = login_user(request.form.get("username"), request.form.get("password"))
         # check dat username is ingevuld
-        if check == 0:
+        if check == -1:
             return apology("must provide username")
 
         # check dat wachtwoord is ingevuld
-        elif check == 1:
+        elif check == -2:
             return redirect(url_for('login'))
 
-        elif check == 2:
+        elif check == -3:
             return apology("wachtwoord en username komen niet overeen")
         elif check == True:
             return redirect(url_for('register'))
