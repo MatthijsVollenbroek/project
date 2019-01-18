@@ -51,7 +51,7 @@ body {
   <a href="#shame"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
   <a href="#about"title="Relevant"><i class="fa fa-exclamation" aria-hidden="true"></i>Relevant For You</a>
   <a href="#search" title="Search">Searching Page</a>
-  <a href="#logout" title="Logout">Log out</a>
+  <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 <main> {% block main %}{% endblock %} </main>
 </div>
