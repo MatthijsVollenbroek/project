@@ -38,7 +38,7 @@ def index():
 
 
 @app.route("/login", methods=["GET", "POST"])
-def login_user():
+def login():
     """Log user in."""
 
     # forget any user_id
@@ -46,7 +46,7 @@ def login_user():
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-        check = login(request.form.get("username"), request.form.get("password"))
+        check = login_user(request.form.get("username"), request.form.get("password"))
         # check dat username is ingevuld
         if check == 0:
             return apology("must provide username")
@@ -76,7 +76,7 @@ def logout():
 
 
 @app.route("/register", methods=["GET", "POST"])
-def register_user():
+def register():
     if request.method == "POST":
 
         # ensure username was submitted
@@ -90,7 +90,7 @@ def register_user():
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("must provide matching passwords")
 
-        check = register(request.form.get("username"), request.form.get("password"))
+        check = register_user(request.form.get("username"), request.form.get("password"))
         if check == False:
             return apology("gebruikersnaam al in gebruik")
         else:

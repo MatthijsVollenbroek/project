@@ -34,7 +34,7 @@ def most_disliked(user_id):
     return newlist[0]['post_id']
 
 
-def register(user_name, password):
+def register_user(user_name, password):
     # check of gebruikersnaam al in gebruik is
     match = db.execute("SELECT * FROM users WHERE username = :username", username=user_name)
     if len(match) != 0:
@@ -45,7 +45,7 @@ def register(user_name, password):
     userid = db.execute("SELECT user_id FROM users WHERE username = :username", username=user_name)
     return userid[0]['user_id']
 
-def login(user_name, password):
+def login_user(user_name, password):
     # mogelijk user_id vergeten
     session.clear()
     # check of username ingevuld is
