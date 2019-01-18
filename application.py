@@ -80,7 +80,9 @@ def logout():
     # redirect user to login form
     return redirect(url_for("login"))
 
-
+@app.route("/homepage")
+def homepage():
+    return render_template("homepage.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
