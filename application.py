@@ -65,7 +65,7 @@ def login():
         elif check == -3:
             return apology("wachtwoord en username komen niet overeen")
         elif check == True:
-            return redirect(url_for('register'))
+            return redirect(url_for('homepage'))
     else:
         return render_template("login.html")
 
@@ -80,7 +80,9 @@ def logout():
     # redirect user to login form
     return redirect(url_for("login"))
 
-
+@app.route("/homepage")
+def homepage():
+    return render_template("homepage.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -102,7 +104,7 @@ def register():
             return apology("gebruikersnaam al in gebruik")
         else:
             session["user_id"] = check
-            return redirect(url_for('login'))
+            return redirect(url_for('homepage'))
 
     else:
         return render_template("register.html")
