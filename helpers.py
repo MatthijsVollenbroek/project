@@ -40,8 +40,8 @@ def register_user(user_name, password):
     if len(match) != 0:
         return False
     # wachtwoord encrypten
-    hash = pwd_context.hash(password)
-    db.execute("INSERT INTO users (username, password) VALUES(:username, :password)", username=user_name, password=hash)
+    password_encrypt = pwd_context.hash(password)
+    db.execute("INSERT INTO users (username, password) VALUES(:username, :password)", username=user_name, password=password_encrypt)
     userid = db.execute("SELECT user_id FROM users WHERE username = :username", username=user_name)
     return userid[0]['user_id']
 

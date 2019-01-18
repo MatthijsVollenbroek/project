@@ -46,6 +46,13 @@ def login():
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
+        if not request.form.get("username"):
+            return apology("must provide username")
+
+        # ensure password was submitted
+        elif not request.form.get("password"):
+            return apology("must provide password")
+
         check = login_user(request.form.get("username"), request.form.get("password"))
         # check dat username is ingevuld
         if check == 0:
@@ -53,12 +60,12 @@ def login():
 
         # check dat wachtwoord is ingevuld
         elif check == 1:
-            return apology("must provide password")
+            return redirect(url_for('login'))
 
         elif check == 2:
             return apology("wachtwoord en username komen niet overeen")
         elif check == True:
-            return redirect(url_for('homepage'))
+            return redirect(url_for('register'))
     else:
         return render_template("login.html")
 
@@ -95,7 +102,7 @@ def register():
             return apology("gebruikersnaam al in gebruik")
         else:
             session["user_id"] = check
-            return redirect(url_for('homepage'))
+            return redirect(url_for('login'))
 
     else:
         return render_template("register.html")
