@@ -80,11 +80,11 @@ def register():
     if request.method == "POST":
 
         # ensure username was submitted
-        if not request.method("username"):
+        if not request.method.get("username"):
             return apology("must provide username to register")
 
         # ensure password was submitted
-        elif not request.method("password"):
+        elif not request.method.get("password"):
             return apology("must provide password to register")
 
         elif request.form.get("password") != request.form.get("confirmation"):
