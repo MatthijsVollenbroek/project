@@ -110,27 +110,18 @@ def register():
         return render_template("register.html")
 
 
-@app.route("/homepage_recent", methods=["GET", "POST"])
+@app.route("homepage_recent", methods=["GET", "POST"])
 def homepage_recent():
     return render_template("homepage_recent.html")
 
-@app.route("/homepage_shame", methods=["GET", "POST"])
+@app.route("homepage_shame", methods=["GET", "POST"])
 def homepage_shame():
     return render_template("homepage_shame.html")
 
-@app.route("/homepage_trending", methods=["GET", "POST"])
+@app.route("homepage_trending", methods=["GET", "POST"])
 def homepage_trending():
     return render_template("homepage_trending.html")
 
-@app.route("/search", methods=["GET", "POST"])
+@app.route("search", methods=["GET", "POST"])
 def search():
     return render_template("search.html")
-
-
-@app.route("/post", methods=["GET", "POST"])
-def post():
-    if request.method == "POST":
-        post_file(session['user_id'], request.form.get("file_post"))
-        return redirect(url_for('homepage'))
-    else:
-        return render_template("post.html")
