@@ -109,6 +109,19 @@ def register():
     else:
         return render_template("register.html")
 
-        # redirect user to home page
 
-    # else if user reached route via GET (as by clicking a link or via redirect)
+@app.route("homepage_recent", methods=["GET", "POST"])
+def homepage_recent():
+    return render_template("homepage_recent.html")
+
+@app.route("homepage_shame", methods=["GET", "POST"])
+def homepage_shame():
+    return render_template("homepage_shame.html")
+
+@app.route("homepage_trending", methods=["GET", "POST"])
+def homepage_trending():
+    return render_template("homepage_trending.html")
+
+@app.route("search", methods=["GET", "POST"])
+def search():
+    return render_template("search.html")

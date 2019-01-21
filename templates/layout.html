@@ -46,11 +46,11 @@ body {
 <body>
 <div class="container">
 <div class="topnav">
-  <a href="#home">Home</a>
-  <a href="#trending"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
-  <a href="#shame"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
-  <a href="#about"title="Relevant"><i class="fa fa-exclamation" aria-hidden="true"></i>Relevant For You</a>
-  <a href="#search" title="Search">Searching Page</a>
+  <a href="{{url_for('homepage')}}">Home</a>
+  <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
+  <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
+  <a href="{{url_for('homepage_recent')}}"title="Relevant"><i class="fa fa-exclamation" aria-hidden="true"></i>Recent</a>
+  <a href="{{url_for('search')}}">Searching Page</a>
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 <main> {% block main %}{% endblock %} </main>
