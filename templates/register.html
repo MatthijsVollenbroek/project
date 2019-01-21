@@ -5,17 +5,22 @@
 {% endblock %}
 
 {% block main %}
-    <form action="{{ url_for('register') }}" method="post">
+    <form action="{{ url_for('register') }}" id="registerForm" method="post">
         <fieldset>
             <div class="form-group">
-                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" onblur="validateForm()" required/>
+
+            </div>
+            <span id="username_error" class="error"></span>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Password" type="password" onblur="validateForm()" required/>
+
             </div>
             <div class="form-group">
-                <input class="form-control" name="password" placeholder="Password" type="password"/>
+                <input class="form-control" name="confirmation" placeholder="Password (test)" type="password"  onblur="validateForm()" required/>
+
             </div>
-            <div class="form-group">
-                <input class="form-control" name="confirmation" placeholder="Password (test)" type="password"/>
-            </div>
+            <span id="password_error" class="error"></span>
             <div class="form-group">
                 <button class="btn btn-default" type="submit">Register</button>
             </div>
