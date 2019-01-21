@@ -111,3 +111,7 @@ def already_follows(user_id, user_id_follows):
     if len(check) != 0:
         return True
     return False
+
+def post_file(user_id, file):
+    db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
+    return True
