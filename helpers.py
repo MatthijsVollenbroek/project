@@ -66,7 +66,7 @@ def post_like(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
         db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 1", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1")
+        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al dislike heeft gegeven op post
     elif rating == 0:
@@ -80,7 +80,7 @@ def post_dislike(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
         db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 0", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1")
+        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1 WHERE post_id =:post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
     elif rating == 1:
@@ -103,6 +103,7 @@ def follow(user_id, user_id_follows):
     if already_follows(user_id, user_id_follows) == True:
         return False
     db.execute("INSERT INTO followers (user_id, follows) VALUES(:user_id, :follows)", user_id=user_id, follows=user_id_follows)
+    db.execute("UPDATE users SET followers = follwers + 1 WHERE user_id = :user_id_follows", user_id_follows=user_id_follows)
     return True
 
 def already_follows(user_id, user_id_follows):
@@ -114,3 +115,7 @@ def already_follows(user_id, user_id_follows):
 
 def post_file(user_id, file):
     db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
+
+def table_list():
+    gebruikers = db.execute("SELECT * FROM users")
+    return gebruikers

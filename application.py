@@ -124,7 +124,8 @@ def homepage_trending():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    return render_template("search.html")
+    users = table_list()
+    return render_template("search.html", users=users)
 
 @app.route("/post", methods=["GET", "POST"])
 def post():
