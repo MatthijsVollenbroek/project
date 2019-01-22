@@ -81,6 +81,7 @@ def logout():
     return redirect(url_for("login"))
 
 @app.route("/homepage")
+@login_required
 def homepage():
     return render_template("homepage.html")
 
@@ -111,18 +112,22 @@ def register():
 
 
 @app.route("/homepage_recent", methods=["GET", "POST"])
+@login_required
 def homepage_recent():
     return render_template("homepage_recent.html")
 
 @app.route("/homepage_shame", methods=["GET", "POST"])
+@login_required
 def homepage_shame():
     return render_template("homepage_shame.html")
 
 @app.route("/homepage_trending", methods=["GET", "POST"])
+@login_required
 def homepage_trending():
     return render_template("homepage_trending.html")
 
 @app.route("/search", methods=["GET", "POST"])
+@login_required
 def search():
     # lijst van alle gebruikers
     users = table_list()
@@ -130,6 +135,7 @@ def search():
     return render_template("search.html", users=users)
 
 @app.route("/post", methods=["GET", "POST"])
+@login_required
 def post():
     if request.method == "POST":
         # uploaden van bestand naar database
