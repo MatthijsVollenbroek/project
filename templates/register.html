@@ -26,4 +26,24 @@
             </div>
         </fieldset>
     </form>
+    <script>
+        function validateForm() {
+          document.getElementById("username_error").innerHTML = "";
+          document.getElementById("password_error").innerHTML = "";
+          var x = document.forms["registerForm"]["username"].value;
+          var y = document.forms["registerForm"]["password"].value;
+          var z = document.forms["registerForm"]["confirmation"].value;
+
+          if (x == null || x == "") {
+            document.getElementById("username_error").innerHTML = "Geef username op";
+          }
+          if (y != z) {
+              document.getElementById("password_error").innerHTML = "wachtwoorden komen niet overeen";
+          }
+          if ((x != "" || x == null) && y == z) {
+            document.getElementById("username_error").innerHTML = "";
+            document.getElementById("password_error").innerHTML = "";
+          }
+        }
+    </script>
 {% endblock %}

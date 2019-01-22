@@ -24,7 +24,6 @@
 
         <link href="static/stylesheets/styles.css" rel="stylesheet">
 
-
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,26 +58,6 @@ body {
 }
 </style>
 
-<script>
-function validateForm() {
-  var x = document.forms["registerForm"]["username"].value;
-  var y = document.forms["registerForm"]["password"].value;
-  var z = document.forms["registerForm"]["confirmation"].value;
-
-  if (x == null || x == "") {
-    document.getElementById("username_error").innerHTML = "Geef username op";
-    return false;
-  }
-  else if (y != z) {
-      document.getElementById("password_error").innerHTML = "wachtwoorden komen niet overeen";
-      return false;
-  }
-  else {
-    document.getElementById("username_error").innerHTML = "";
-    document.getElementById("password_error").innerHTML = "";
-  }
-}
-</script>
 </head>
 <body>
 <div class="container">
