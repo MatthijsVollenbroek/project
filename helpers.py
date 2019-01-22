@@ -114,8 +114,10 @@ def already_follows(user_id, user_id_follows):
     return False
 
 def post_file(user_id, file):
+    # upload bestand met user_id naar database
     db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
 
 def table_list():
+    # maak lijst met alle gebruikers om in tabel weer te geven
     gebruikers = db.execute("SELECT * FROM users")
     return gebruikers

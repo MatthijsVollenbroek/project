@@ -124,12 +124,15 @@ def homepage_trending():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    # lijst van alle gebruikers
     users = table_list()
+    # lijst verwerken in html tabel
     return render_template("search.html", users=users)
 
 @app.route("/post", methods=["GET", "POST"])
 def post():
     if request.method == "POST":
+        # uploaden van bestand naar database
         post_file(session["user_id"], request.form.get("file_post"))
         return redirect(url_for('homepage'))
     return render_template("post.html")
