@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <form action="{{ url_for('homepage_recent') }}" method="post">
+        <fieldset>
+            <h1>Recent</h1>
+        </fieldset>
+    </form>
+
+
+{% endblock %}

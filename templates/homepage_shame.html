@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <form action="{{ url_for('homepage_shame') }}" method="post">
+        <fieldset>
+            <h1>Wall Of Shame</h1>
+        </fieldset>
+    </form>
+
+
+{% endblock %}
