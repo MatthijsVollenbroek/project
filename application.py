@@ -154,6 +154,7 @@ def post():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            post_made(session["user_id"], filename)
             return redirect(url_for("homepage"))
     else:
         return render_template("post.html")

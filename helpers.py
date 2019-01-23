@@ -120,6 +120,8 @@ def allowed_file(filename):
 
     # upload bestand_url met user_id naar database
     #db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :url)", user_id=user_id, url=url)
+def post_made(user_id, file):
+    db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
 
 def table_list():
     # maak lijst met alle gebruikers om in tabel weer te geven
