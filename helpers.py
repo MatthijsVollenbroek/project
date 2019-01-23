@@ -119,7 +119,6 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
     # upload bestand_url met user_id naar database
-    #db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :url)", user_id=user_id, url=url)
 def post_made(user_id, file):
     db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
 

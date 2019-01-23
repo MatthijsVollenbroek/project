@@ -19,7 +19,7 @@
       <th scope="row"></th>
       <td>{{ post["user_id"] }}</td>
 
-      <td><img src="/posts/{{ post["file"] }}"></td>
+      <td><img src="{{ UPLOADFOLDER }}{{ post["file"] }}"></td>
     </tr>
     {% endfor %}
   </tbody>

@@ -26,7 +26,7 @@ if app.config["DEBUG"]:
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-UPLOAD_FOLDER = os.path.join(cwd, 'posts/')
+UPLOAD_FOLDER = os.path.join(cwd, 'static/posts/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Session(app)
 
@@ -117,7 +117,7 @@ def register():
 @login_required
 def homepage_recent():
     posts = recent_posts()
-    return render_template("homepage_recent.html", posts=posts)
+    return render_template("homepage_recent.html", UPLOADFOLDER=UPLOAD_FOLDER, posts=posts)
 
 @app.route("/homepage_shame", methods=["GET", "POST"])
 @login_required
@@ -142,6 +142,7 @@ def search():
 def post():
     if request.method == 'POST':
         # check if the post request has the file part
+        print(UPLOAD_FOLDER)
         if 'file_post' not in request.files:
             flash('No file part')
             return redirect(request.url)
