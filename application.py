@@ -3,13 +3,15 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
+import os
+from werkzeug.utils import secure_filename
 
 
 from helpers import *
 
 # configure application
 app = Flask(__name__)
-
+cwd = os.getcwd()
 # ensure responses aren't cached
 if app.config["DEBUG"]:
     @app.after_request
@@ -24,6 +26,8 @@ if app.config["DEBUG"]:
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+UPLOAD_FOLDER = os.path.join(cwd, 'posts/')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Session(app)
 
 # configure CS50 Library to use SQLite database
@@ -40,10 +44,8 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in."""
-
     # forget any user_id
     session.clear()
-
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
         if not request.form.get("username"):
@@ -114,7 +116,8 @@ def register():
 @app.route("/homepage_recent", methods=["GET", "POST"])
 @login_required
 def homepage_recent():
-    return render_template("homepage_recent.html")
+    posts = recent_posts()
+    return render_template("homepage_recent.html", posts=posts)
 
 @app.route("/homepage_shame", methods=["GET", "POST"])
 @login_required
@@ -137,8 +140,20 @@ def search():
 @app.route("/post", methods=["GET", "POST"])
 @login_required
 def post():
-    if request.method == "POST":
-        # uploaden van bestand naar database
-        post_file(session["user_id"], request.form.get("file_post"))
-        return redirect(url_for('homepage'))
-    return render_template("post.html")
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file_post' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file_post']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(url_for('homepage_trending'))
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for("homepage"))
+    else:
+        return render_template("post.html")

@@ -9,6 +9,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from operator import itemgetter
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///project.db")
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
 def login_required(f):
@@ -113,11 +114,19 @@ def already_follows(user_id, user_id_follows):
         return True
     return False
 
-def post_file(user_id, file):
-    # upload bestand met user_id naar database
-    db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=file)
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+    # upload bestand_url met user_id naar database
+    #db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :url)", user_id=user_id, url=url)
 
 def table_list():
     # maak lijst met alle gebruikers om in tabel weer te geven
     gebruikers = db.execute("SELECT * FROM users")
     return gebruikers
+
+def recent_posts():
+    posts = db.execute("SELECT * from posts")
+    posts = posts[:10]
+    return posts
