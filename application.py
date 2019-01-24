@@ -117,7 +117,7 @@ def register():
 @login_required
 def homepage_recent():
     posts = recent_posts()
-    return render_template("homepage_recent.html", UPLOADFOLDER=UPLOAD_FOLDER, posts=posts)
+    return render_template("homepage_recent.html", posts=posts)
 
 @app.route("/homepage_shame", methods=["GET", "POST"])
 @login_required
@@ -142,7 +142,6 @@ def search():
 def post():
     if request.method == 'POST':
         # check if the post request has the file part
-        print(UPLOAD_FOLDER)
         if 'file_post' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -154,8 +153,13 @@ def post():
             return redirect(url_for('homepage_trending'))
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filesort = filename.split('.')
+            filesort = filesort[1]
             post_made(session["user_id"], filename)
+            post_id = db.execute("SELECT post_id FROM posts WHERE user_id =:user_id AND file = :file", user_id=session['user_id'], file=filename)
+            filename = 'post' + str(post_id[0]['post_id']) + '.' + filesort
+            db.execute("UPDATE posts SET file = :file WHERE post_id=:post_id", file=filename, post_id=post_id[0]['post_id'])
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(filename)))
             return redirect(url_for("homepage"))
     else:
         return render_template("post.html")
