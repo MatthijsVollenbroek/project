@@ -18,8 +18,7 @@
     <tr>
       <th scope="row"></th>
       <td>{{ post["user_id"] }}</td>
-
-      <td><img src="{{ url_for('static', filename='posts/post['file']') }}"></td>
+      <td><img src="{{ url_for('static', filename='posts/') }}{{ post['file'] }}"></td>
     </tr>
     {% endfor %}
   </tbody>
