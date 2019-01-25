@@ -122,12 +122,14 @@ def homepage_recent():
 @app.route("/homepage_shame", methods=["GET", "POST"])
 @login_required
 def homepage_shame():
-    return render_template("homepage_shame.html")
+    lijst = trending_shame('shame')
+    return render_template("homepage_shame.html", posts=lijst)
 
 @app.route("/homepage_trending", methods=["GET", "POST"])
 @login_required
 def homepage_trending():
-    return render_template("homepage_trending.html")
+    lijst = trending_shame('trending')
+    return render_template("homepage_trending.html", posts=lijst)
 
 @app.route("/search", methods=["GET", "POST"])
 @login_required
@@ -164,22 +166,23 @@ def post():
     else:
         return render_template("post.html")
 
-@app.route("/like/<postid>", methods=['GET', 'POST'])
-def like(postid):
+@app.route("/like/<postid>/<dest>", methods=['GET', 'POST'])
+def like(postid, dest):
     user_id = session['user_id']
     post_id = postid
     check = post_like(user_id, post_id)
     if check == "False":
         return apology("post al gelikete")
     else:
-        return redirect(url_for('homepage'))
+        return redirect(url_for(dest))
 
-@app.route("/dislike/<postid>/", methods=['GET', 'POST'])
-def dislike(postid):
+@app.route("/dislike/<postid>/<dest>", methods=['GET', 'POST'])
+def dislike(postid, dest):
     user_id = session['user_id']
     post_id = postid
+    dest = dest
     check = post_dislike(user_id, post_id)
     if check == "False":
         return apology("post al gelikete")
     else:
-        return redirect(url_for('homepage'))
+        return redirect(url_for(dest))

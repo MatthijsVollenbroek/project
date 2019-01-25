@@ -133,3 +133,20 @@ def recent_posts():
     posts = db.execute("SELECT * from posts")
     posts = posts[:10]
     return posts
+
+def trending_shame(versie):
+    posts = db.execute("SELECT * from posts")
+    posts_likes = sorted(posts, key=itemgetter('likes_today'))
+    posts_dislikes = sorted(posts, key=itemgetter('dislikes_today'))
+    posts_likes = posts_likes[:10]
+    posts_dislikes = posts_dislikes[:10]
+    for post in posts_likes:
+        if post in posts_dislikes:
+            if post['likes_today'] >= post['dislikes_today']:
+                posts_dislikes.remove(post)
+            else:
+                posts_likes.remove(post)
+    if versie == 'trending':
+        return posts_likes[:5]
+    else:
+        return posts_dislikes[:5]

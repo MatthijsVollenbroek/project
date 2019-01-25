@@ -1,16 +1,33 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Hall of Fame
 {% endblock %}
 
 {% block main %}
 
-    <form action="{{ url_for('homepage_trending') }}" method="post">
-        <fieldset>
-            <h1>Trending page</h1>
-        </fieldset>
-    </form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{ post["username"] }}</td>
+      <td><img src="{{ url_for('static', filename='posts/') }}{{ post['file'] }}"></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td><a href="/like/{{post['post_id']}}/homepage_recent" class="btn btn-success btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Like</a> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
+      <td><a href="/dislike/{{ post['post_id']}}/homepage_recent" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Dislike</a> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 
 {% endblock %}
