@@ -65,14 +65,15 @@ def login_user(user_name, password):
 
 def post_like(user_id, post_id):
     rating = already_rated(user_id, post_id)
+    print(rating)
     if rating == False:
-        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 1", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1 WHERE post_id = :post_id", post_id=post_id)
+        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 2)", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1, likes_today = likes_today + 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al dislike heeft gegeven op post
-    elif rating == 0:
-        db.execute("UPDATE likes_dislikes SET like_dislike = 1 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes + 1 AND likes_today = likes_today + 1 AND total_dislikes = total_dislikes - 1 AND dislikes_today = dislikes_today - 1 WHERE post_id = :post_id", post_id=post_id)
+    elif rating == 3:
+        db.execute("UPDATE likes_dislikes SET like_dislike = 2 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1, likes_today = likes_today + 1, total_dislikes = total_dislikes - 1, dislikes_today = dislikes_today - 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
     else:
@@ -80,13 +81,13 @@ def post_like(user_id, post_id):
 def post_dislike(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
-        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 0", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1 WHERE post_id =:post_id", post_id=post_id)
+        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 3", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1, dislikes_today = dislikes_today + 1 WHERE post_id =:post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
-    elif rating == 1:
-        db.execute("UPDATE likes_dislikes SET like_dislike = 0 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes - 1 AND likes_today = likes_today - 1 AND total_dislikes = total_dislikes + 1 AND dislikes_today = dislikes_today + 1 WHERE post_id = :post_id", post_id=post_id)
+    elif rating == 2:
+        db.execute("UPDATE likes_dislikes SET like_dislike = 3 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes - 1, likes_today = likes_today - 1, total_dislikes = total_dislikes + 1, dislikes_today = dislikes_today + 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al dislike heeft gegeven op post
     else:
@@ -120,7 +121,8 @@ def allowed_file(filename):
 
     # upload bestand_url met user_id naar database
 def post_made(user_id, filename):
-    db.execute("INSERT INTO posts (user_id, file) VALUES(:user_id, :file)", user_id=user_id, file=filename)
+    username = db.execute("SELECT username FROM users WHERE user_id = :user_id", user_id=session["user_id"])[0]['username']
+    db.execute("INSERT INTO posts (username, user_id, file) VALUES(:username, :user_id, :file)", user_id=user_id, file=filename, username=username)
 
 def table_list():
     # maak lijst met alle gebruikers om in tabel weer te geven

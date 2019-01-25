@@ -17,8 +17,13 @@
     {% for post in posts %}
     <tr>
       <th scope="row"></th>
-      <td>{{ post["user_id"] }}</td>
+      <td>{{ post["username"] }}</td>
       <td><img src="{{ url_for('static', filename='posts/') }}{{ post['file'] }}"></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td><a href="/like/{{post['post_id']}}" class="btn btn-success btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Like</a> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
+      <td><a href="/dislike/{{ post['post_id']}}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Dislike</a> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>
     </tr>
     {% endfor %}
   </tbody>

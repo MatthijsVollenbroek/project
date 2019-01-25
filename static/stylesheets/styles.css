@@ -16,3 +16,11 @@ table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
 }
+
+img {
+  display: block !important;
+  max-width:230px !important;
+  max-height:95px !important;
+  width: auto !important;
+  height: auto !important;
+}

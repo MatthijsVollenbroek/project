@@ -163,3 +163,23 @@ def post():
             return redirect(url_for("homepage"))
     else:
         return render_template("post.html")
+
+@app.route("/like/<postid>", methods=['GET', 'POST'])
+def like(postid):
+    user_id = session['user_id']
+    post_id = postid
+    check = post_like(user_id, post_id)
+    if check == "False":
+        return apology("post al gelikete")
+    else:
+        return redirect(url_for('homepage'))
+
+@app.route("/dislike/<postid>/", methods=['GET', 'POST'])
+def dislike(postid):
+    user_id = session['user_id']
+    post_id = postid
+    check = post_dislike(user_id, post_id)
+    if check == "False":
+        return apology("post al gelikete")
+    else:
+        return redirect(url_for('homepage'))
