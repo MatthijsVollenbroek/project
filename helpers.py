@@ -24,14 +24,14 @@ def login_required(f):
 def most_liked(user_id):
     # returned voor bepaalde user_id meest gelikete post
     post_likes = db.execute("SELECT total_likes from posts WHERE user_id = :user_id", user_id=user_id)
-    newlist = sorted(post_likes, key=itemgetter('total_likes'))
+    newlist = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)
     return newlist[0]['post_id']
 
 
 def most_disliked(user_id):
     # returned voor bepaalde user_id meest gedislikete post
     post_dislikes = db.execute("SELECT total_dislikes from posts WHERE user_id = :user_id", user_id=user_id)
-    newlist = sorted(post_dislikes, key=itemgetter('total_dislikes'))
+    newlist = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)
     return newlist[0]['post_id']
 
 
@@ -136,8 +136,8 @@ def recent_posts():
 
 def trending_shame(versie):
     posts = db.execute("SELECT * from posts")
-    posts_likes = sorted(posts, key=itemgetter('likes_today'))
-    posts_dislikes = sorted(posts, key=itemgetter('dislikes_today'))
+    posts_likes = sorted(posts, key=itemgetter('likes_today'), reverse=True)
+    posts_dislikes = sorted(posts, key=itemgetter('dislikes_today'), reverse=True)
     posts_likes = posts_likes[:10]
     posts_dislikes = posts_dislikes[:10]
     for post in posts_likes:
