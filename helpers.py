@@ -65,7 +65,6 @@ def login_user(user_name, password):
 
 def post_like(user_id, post_id):
     rating = already_rated(user_id, post_id)
-    print(rating)
     if rating == False:
         db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 2)", user_id=user_id, post_id=post_id)
         db.execute("UPDATE posts SET total_likes = total_likes + 1, likes_today = likes_today + 1 WHERE post_id = :post_id", post_id=post_id)
@@ -81,7 +80,7 @@ def post_like(user_id, post_id):
 def post_dislike(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
-        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 3", user_id=user_id, post_id=post_id)
+        db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 3)", user_id=user_id, post_id=post_id)
         db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1, dislikes_today = dislikes_today + 1 WHERE post_id =:post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
@@ -140,13 +139,15 @@ def trending_shame(versie):
     posts_dislikes = sorted(posts, key=itemgetter('dislikes_today'), reverse=True)
     posts_likes = posts_likes[:10]
     posts_dislikes = posts_dislikes[:10]
+    likes_temp = []
+    dislikes_temp = []
     for post in posts_likes:
         if post in posts_dislikes:
             if post['likes_today'] >= post['dislikes_today']:
-                posts_dislikes.remove(post)
+                likes_temp.append(post)
             else:
-                posts_likes.remove(post)
+                dislikes_temp.append(post)
     if versie == 'trending':
-        return posts_likes[:5]
+        return likes_temp[:5]
     else:
-        return posts_dislikes[:5]
+        return dislikes_temp[:5]
