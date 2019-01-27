@@ -95,6 +95,13 @@ def register():
         if not request.form.get("username"):
             return apology("must provide username to register")
 
+        # check dat gebruikersnaam alleen letters en cijfers bevat
+        elif request.form.get("username").isalnum() == False:
+            return apology("only use letters and numbers in username (also no spaces)")
+
+        # check dat username niet te lang is
+        elif len(request.form.get("username")) > 30:
+            return apology("username maximaal 30 tekens")
         # ensure password was submitted
         elif not request.form.get("password"):
             return apology("must provide password to register")

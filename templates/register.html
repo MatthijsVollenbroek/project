@@ -33,9 +33,24 @@
           var x = document.forms["registerForm"]["username"].value;
           var y = document.forms["registerForm"]["password"].value;
           var z = document.forms["registerForm"]["confirmation"].value;
+          var letterNumber = /^[0-9a-zA-Z]+$/;
+          var check;
 
+          if (x.match(letterNumber)) {
+              check = true;
+          }
+          else {
+              check = false;
+          }
           if (x == null || x == "") {
             document.getElementById("username_error").innerHTML = "Geef username op";
+          }
+          else if (x.length > 30) {
+              document.getElementById("username_error").innerHTML = "Username maximaal 30 tekens lang";
+          }
+
+          else if (check == false) {
+              document.getElementById("username_error").innerHTML = "Gebruik alleen letters en cijfers in gebruikersnaam (ook geen spaties)"
           }
           if (y != z) {
               document.getElementById("password_error").innerHTML = "wachtwoorden komen niet overeen";
