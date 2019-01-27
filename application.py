@@ -166,14 +166,40 @@ def post():
             filesort = filesort[1]
             post_made(session["user_id"], filename)
             post_id = db.execute("SELECT post_id FROM posts WHERE user_id =:user_id AND file = :file", user_id=session['user_id'], file=filename)
-            filename = 'post' + str(post_id[0]['post_id']) + '.' + filesort
+            filename = url_for('static', filename='posts/') + 'post' + str(post_id[0]['post_id']) + '.' + filesort
+            filenamelocal = 'post' + str(post_id[0]['post_id']) + '.' + filesort
             db.execute("UPDATE posts SET file = :file WHERE post_id=:post_id", file=filename, post_id=post_id[0]['post_id'])
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(filename)))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(filenamelocal)))
             return redirect(url_for("homepage"))
     else:
         return render_template("post.html")
 
+@app.route("/preview_gif", methods=["GET", "POST"])
+@login_required
+def preview_gif():
+    if request.method == 'POST':
+        zoekterm = request.form.get("query")
+        results = preview_GIF(zoekterm)
+        gifs = []
+        for gif in range(len(results['data'])):
+            url = results['data'][gif]['images']['original']['url']
+            preview = results['data'][gif]['images']['fixed_height_downsampled']['url']
+            temp = [url, preview]
+            gifs.append(temp)
+        return render_template("preview_gif.html", data=gifs)
+
+@app.route("/post_gif", methods=["GET", "POST"])
+@login_required
+def post_gif():
+    if request.method == "POST":
+        url = request.form.get("giftopost")
+        print(url)
+        post_made(session['user_id'], url)
+        return redirect(url_for('homepage'))
+
+
 @app.route("/like/<postid>/<dest>", methods=['GET', 'POST'])
+@login_required
 def like(postid, dest):
     user_id = session['user_id']
     post_id = postid
@@ -184,6 +210,7 @@ def like(postid, dest):
         return redirect(url_for(dest))
 
 @app.route("/dislike/<postid>/<dest>", methods=['GET', 'POST'])
+@login_required
 def dislike(postid, dest):
     user_id = session['user_id']
     post_id = postid

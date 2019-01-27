@@ -7,6 +7,8 @@ from passlib.apps import custom_app_context as pwd_context
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 # nodig voor most_liked en most_disliked
 from operator import itemgetter
+# voor giphy API
+import json
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///project.db")
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -158,3 +160,9 @@ def trending_shame(versie):
         return likes_temp[:5]
     else:
         return dislikes_temp[:5]
+
+def preview_GIF(query):
+    zoekterm = query.replace(" ", "+")
+    link = "http://api.giphy.com/v1/gifs/search?q=" + zoekterm + "&api_key=az08ZN1d9Ek2JlYs2IVW8f1kvy7dtEDI&limit=5"
+    data = json.loads(urllib.request.urlopen(link).read())
+    return data
