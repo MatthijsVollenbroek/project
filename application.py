@@ -183,7 +183,7 @@ def preview_gif():
         gifs = []
         for gif in range(len(results['data'])):
             url = results['data'][gif]['images']['original']['url']
-            preview = results['data'][gif]['images']['fixed_height_downsampled']['url']
+            preview = results['data'][gif]['images']['fixed_height']['url']
             temp = [url, preview]
             gifs.append(temp)
         return render_template("preview_gif.html", data=gifs)
