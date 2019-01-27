@@ -147,6 +147,13 @@ def trending_shame(versie):
                 likes_temp.append(post)
             else:
                 dislikes_temp.append(post)
+        else:
+            likes_temp.append(post)
+    for post in posts_dislikes:
+        if post not in posts_likes:
+            dislikes_temp.append(post)
+    likes_temp = sorted(likes_temp, key=itemgetter('likes_today'), reverse=True)
+    dislikes_temp = sorted(dislikes_temp, key=itemgetter('dislikes_today'), reverse=True)
     if versie == 'trending':
         return likes_temp[:5]
     else:
