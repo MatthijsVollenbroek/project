@@ -178,7 +178,7 @@ def like(postid, dest):
     user_id = session['user_id']
     post_id = postid
     check = post_like(user_id, post_id)
-    if check == "False":
+    if check == False:
         return apology("post al gelikete")
     else:
         return redirect(url_for(dest))
@@ -189,7 +189,7 @@ def dislike(postid, dest):
     post_id = postid
     dest = dest
     check = post_dislike(user_id, post_id)
-    if check == "False":
+    if check == False:
         return apology("post al gelikete")
     else:
         return redirect(url_for(dest))
