@@ -132,7 +132,8 @@ def table_list():
 
 def recent_posts():
     posts = db.execute("SELECT * from posts")
-    posts = posts[:10]
+    posts_recent = sorted(posts, key=itemgetter("post_date"), reverse=True)
+    posts = posts_recent[:10]
     return posts
 
 def trending_shame(versie):
