@@ -33,12 +33,18 @@ body {
   font-family: Impact;
 }
 
-#topnav {
+.header {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+#navbar {
   overflow: hidden;
   background-color: #2e005f;
 }
 
-#topnav a {
+#navbar a {
   float: left;
   color: #ffe0ed;
   text-align: center;
@@ -47,21 +53,35 @@ body {
   font-size: 30px;
 }
 
-#topnav a:hover {
-  background-color: #460091;
+#navbar a:hover {
+ background-color: #460091;
   color: #ffcfe3;
 }
 
-#topnav a.active {
+#navbar a.active {
   background-color: #460091;
   color: #ffcfe3;
+}
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
 }
 </style>
-
 </head>
 <body>
-<div class="container">
-<div id="topnav">
+
+<div id="navbar">
   <a href="{{url_for('homepage')}}">Home</a>
   <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
   <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
@@ -70,6 +90,7 @@ body {
   <a href="{{url_for('post')}}">New Post</a>
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
+ 
 <main>
  {% if errormessage is not none %}
  <div class="alert alert-danger" role="alert">
