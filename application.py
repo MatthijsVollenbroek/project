@@ -69,7 +69,7 @@ def login():
         elif check == True:
             return redirect(url_for('homepage'))
     else:
-        return render_template("login.html")
+        return render_template("login.html", errormessage=None)
 
 
 @app.route("/logout")
@@ -117,7 +117,7 @@ def register():
             return redirect(url_for('homepage'))
 
     else:
-        return render_template("register.html")
+        return render_template("register.html", errormessage=None)
 
 
 @app.route("/homepage_recent", methods=["GET", "POST"])
