@@ -195,3 +195,15 @@ def profile_info(user_id):
     user_data['user_info'] = db.execute("SELECT * FROM users WHERE user_id = :user_id", user_id=user_id)[0]
     user_data['user_posts'] = db.execute("SELECT * FROM posts WHERE user_id = :user_id", user_id=user_id)
     return user_data
+
+def followers(user_id):
+    follow_dict = db.execute("SELECT follows FROM followers WHERE user_id = :user_id", user_id=user_id)
+    follow_list = []
+    for follow in range(len(follow_dict)):
+        follow_list.append(follow_dict[follow]['follows'])
+    follow_list_usable = []
+    for follow in follow_list:
+        userinfo = db.execute("SELECT * FROM users WHERE user_id = :user_id", user_id=follow)
+        follow_list_usable.append(userinfo)
+    return follow_list_usable
+

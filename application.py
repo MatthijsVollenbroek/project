@@ -84,7 +84,8 @@ def logout():
 def homepage():
     username = userIDtoName(session['user_id'])
     posts = recent_following(session['user_id'])
-    return render_template("homepage.html", errormessage=None, username=username, posts=posts)
+    following = followers(session['user_id'])
+    return render_template("homepage.html", errormessage=None, username=username, posts=posts, following=following)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
