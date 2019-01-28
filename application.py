@@ -5,7 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import os
 from werkzeug.utils import secure_filename
-
+import time, threading
 
 from helpers import *
 
@@ -33,13 +33,10 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///project.db")
 
-
 @app.route("/")
 @login_required
 def index():
     return render_template("login.html")
-
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -197,7 +194,6 @@ def post_gif():
     if request.method == "POST":
         url = request.form.get("giftopost")
         description = request.form.get("description")
-        print(url)
         post_made(session['user_id'], url, description)
         return redirect(url_for('homepage'))
 
@@ -225,3 +221,23 @@ def dislike(postid, dest):
         return render_template(dest_template, errormessage="post already disliked")
     else:
         return redirect(url_for(dest))
+
+@app.route("/myprofile", methods=['GET', 'POST'])
+@login_required
+def myprofile():
+    user_data = profile_info(session['user_id'])
+    username = user_data['user_info']['username']
+    most_likes = user_data['user_info']['most_likes']
+    most_dislikes = user_data['user_info']['most_dislikes']
+    return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)
+
+@app.route("/profile/<userid>", methods=['GET', 'POST'])
+@login_required
+def profile(userid):
+    user_data = profile_info(userid)
+    username = user_data['user_info']['username']
+    most_likes = user_data['user_info']['most_likes']
+    most_dislikes = user_data['user_info']['most_dislikes']
+    if userid == session['user_id']:
+        return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)
+    return render_template('profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)

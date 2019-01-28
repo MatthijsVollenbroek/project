@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My profile
+{% endblock %}
+
+{% block main %}
+
+
+<div class="card">
+  <img src="/static/posts/post2.jpg" style="width:100%">
+  <h1>{{ username }}</h1>
+  <div class="dropdown">
+  <button class="dropbtn-profile" onclick="myFunction()">Bio
+    <i class="fa fa-plus"></i>
+  </button>
+  <div id="myDropdown" class="dropdown-content-profile">
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+  </div>
+  <p class="title">Most liked post: {{ most_likes }}</p>
+  <p class="title">Most disliked post: {{ most_dislikes }}</p>
+</div>
+</div>
+
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+{% endblock %}

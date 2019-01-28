@@ -188,5 +188,10 @@ def recent_following(user_id):
         for post in uploader:
             all_posts.append(post)
     all_posts_sorted = sorted(all_posts, key=itemgetter("post_date"), reverse=True)
-    print(all_posts_sorted)
     return all_posts_sorted
+
+def profile_info(user_id):
+    user_data = {}
+    user_data['user_info'] = db.execute("SELECT * FROM users WHERE user_id = :user_id", user_id=user_id)[0]
+    user_data['user_posts'] = db.execute("SELECT * FROM posts WHERE user_id = :user_id", user_id=user_id)
+    return user_data

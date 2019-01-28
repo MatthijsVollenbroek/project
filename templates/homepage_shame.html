@@ -17,7 +17,7 @@
     {% for post in posts %}
     <tr>
       <th scope="row"></th>
-      <td>{{ post["username"] }}</td>
+      <td><a href="/profile/{{ post['user_id'] }}">{{ post["username"] }}</a></td>
       <td><img src="{{ post['file'] }}"></td>
       <td>{{ post['description'] }}</td>
     </tr>
