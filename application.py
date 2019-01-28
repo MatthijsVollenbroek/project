@@ -49,23 +49,23 @@ def login():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
         if not request.form.get("username"):
-            return apology("must provide username")
+            return render_template("login.html", errormessage="Must provide username")
 
         # ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password")
+            return render_template("login.html", errormessage="Must provide password")
 
         check = login_user(request.form.get("username"), request.form.get("password"))
         # check dat username is ingevuld
         if check == -1:
-            return apology("must provide username")
+            return render_template("login.html", errormessage="Must provide username")
 
         # check dat wachtwoord is ingevuld
         elif check == -2:
             return redirect(url_for('login'))
 
         elif check == -3:
-            return apology("wachtwoord en username komen niet overeen")
+            return render_template("login.html", errormessage="Password and username do not match")
         elif check == True:
             return redirect(url_for('homepage'))
     else:
@@ -93,25 +93,25 @@ def register():
 
         # ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username to register")
+            return render_template("register.html", errormessage="Must provide username to register")
 
         # check dat gebruikersnaam alleen letters en cijfers bevat
         elif request.form.get("username").isalnum() == False:
-            return apology("only use letters and numbers in username (also no spaces)")
+            return render_template("register.html", errormessage="Use only letters and numbers (also no spaces in name)")
 
         # check dat username niet te lang is
         elif len(request.form.get("username")) > 30:
-            return apology("username maximaal 30 tekens")
+            return render_template("register.html", errormessage="username has maximum of 30 characters")
         # ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password to register")
+            return render_template("register.html", errormessage="must provide password to register")
 
         elif request.form.get("password") != request.form.get("confirmation"):
-            return apology("must provide matching passwords")
+            return render_template("register.html", errormessage="must provide matching passwords")
 
         check = register_user(request.form.get("username"), request.form.get("password"))
         if check == False:
-            return apology("gebruikersnaam al in gebruik")
+            return render_template("register.html", errormessage="username already in use")
         else:
             session["user_id"] = check
             return redirect(url_for('homepage'))
@@ -206,8 +206,9 @@ def like(postid, dest):
     user_id = session['user_id']
     post_id = postid
     check = post_like(user_id, post_id)
+    dest_template = dest + ".html"
     if check == False:
-        return apology("post al gelikete")
+        return render_template(dest_template, errormessage="post already liked")
     else:
         return redirect(url_for(dest))
 
@@ -216,9 +217,9 @@ def like(postid, dest):
 def dislike(postid, dest):
     user_id = session['user_id']
     post_id = postid
-    dest = dest
+    dest_template = dest + ".html"
     check = post_dislike(user_id, post_id)
     if check == False:
-        return apology("post al gelikete")
+        return render_template(dest_template, errormessage="post already disliked")
     else:
         return redirect(url_for(dest))

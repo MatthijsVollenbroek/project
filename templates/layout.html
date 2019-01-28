@@ -70,7 +70,10 @@ body {
   <a href="{{url_for('post')}}">New Post</a>
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
-<main> {% block main %}{% endblock %} </main>
+<main>
+  {{ errormessage }}
+  {% block main %}{% endblock %}
+</main>
 </div>
 </body>
 </html>
