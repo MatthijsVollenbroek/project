@@ -33,12 +33,12 @@ body {
   font-family: Impact;
 }
 
-.topnav {
+#topnav {
   overflow: hidden;
   background-color: #2e005f;
 }
 
-.topnav a {
+#topnav a {
   float: left;
   color: #ffe0ed;
   text-align: center;
@@ -47,12 +47,12 @@ body {
   font-size: 30px;
 }
 
-.topnav a:hover {
+#topnav a:hover {
   background-color: #460091;
   color: #ffcfe3;
 }
 
-.topnav a.active {
+#topnav a.active {
   background-color: #460091;
   color: #ffcfe3;
 }
@@ -61,7 +61,7 @@ body {
 </head>
 <body>
 <div class="container">
-<div class="topnav">
+<div id="topnav">
   <a href="{{url_for('homepage')}}">Home</a>
   <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
   <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
@@ -71,13 +71,25 @@ body {
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 <main>
-  {% if errormessage is not none %}
-  <div class="alert alert-danger" role="alert">
-    {{ errormessage }}
-  </div>
-  {% endif %}
+  {{ errormessage }}
   {% block main %}{% endblock %}
 </main>
 </div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
 </body>
 </html>
