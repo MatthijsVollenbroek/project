@@ -85,7 +85,7 @@ def logout():
 @app.route("/homepage")
 @login_required
 def homepage():
-    return render_template("homepage.html")
+    return render_template("homepage.html", errormessage=None)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -124,19 +124,19 @@ def register():
 @login_required
 def homepage_recent():
     posts = recent_posts()
-    return render_template("homepage_recent.html", posts=posts)
+    return render_template("homepage_recent.html", posts=posts, errormessage=None)
 
 @app.route("/homepage_shame", methods=["GET", "POST"])
 @login_required
 def homepage_shame():
     lijst = trending_shame('shame')
-    return render_template("homepage_shame.html", posts=lijst)
+    return render_template("homepage_shame.html", posts=lijst, errormessage=None)
 
 @app.route("/homepage_trending", methods=["GET", "POST"])
 @login_required
 def homepage_trending():
     lijst = trending_shame('trending')
-    return render_template("homepage_trending.html", posts=lijst)
+    return render_template("homepage_trending.html", posts=lijst, errormessage=None)
 
 @app.route("/search", methods=["GET", "POST"])
 @login_required
@@ -144,7 +144,7 @@ def search():
     # lijst van alle gebruikers
     users = table_list()
     # lijst verwerken in html tabel
-    return render_template("search.html", users=users)
+    return render_template("search.html", users=users, errormessage=None)
 
 @app.route("/post", methods=["GET", "POST"])
 @login_required
@@ -173,7 +173,7 @@ def post():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(filenamelocal)))
             return redirect(url_for("homepage"))
     else:
-        return render_template("post.html")
+        return render_template("post.html", errormessage=None)
 
 @app.route("/preview_gif", methods=["GET", "POST"])
 @login_required
@@ -187,7 +187,7 @@ def preview_gif():
             preview = results['data'][gif]['images']['fixed_height']['url']
             temp = [url, preview]
             gifs.append(temp)
-        return render_template("preview_gif.html", data=gifs)
+        return render_template("preview_gif.html", data=gifs, errormessage=None)
 
 @app.route("/post_gif", methods=["GET", "POST"])
 @login_required

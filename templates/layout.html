@@ -71,7 +71,7 @@ body {
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 <main>
- {% if errormessage in not none %}
+ {% if errormessage is not none %}
  <div class="alert alert-danger" role="alert">
   {{ errormessage }}
  </div>
