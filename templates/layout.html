@@ -62,7 +62,6 @@ body {
   background-color: #460091;
   color: #ffcfe3;
 }
-}
 
 .content {
   padding: 16px;
@@ -91,6 +90,18 @@ body {
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 
+
+
+<main>
+
+ {% if errormessage is not none %}
+ <div class="alert alert-danger" role="alert">
+  {{ errormessage }}
+ </div>
+ {% endif %}
+ {% block main %}{% endblock %}
+
+</main>
 <script>
 window.onscroll = function() {myFunction()};
 
@@ -99,21 +110,11 @@ var sticky = navbar.offsetTop;
 
 function myFunction() {
   if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
+    navbar.classList.add("sticky");
   } else {
     navbar.classList.remove("sticky");
   }
 }
 </script>
- 
-<main>
- {% if errormessage is not none %}
- <div class="alert alert-danger" role="alert">
-  {{ errormessage }}
- </div>
- {% endif %}
-  {% block main %}{% endblock %}
-</main>
- 
 </body>
 </html>
