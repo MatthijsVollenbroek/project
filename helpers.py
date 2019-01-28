@@ -121,9 +121,11 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
     # upload bestand_url met user_id naar database
-def post_made(user_id, filename):
+def post_made(user_id, filename, description):
     username = db.execute("SELECT username FROM users WHERE user_id = :user_id", user_id=session["user_id"])[0]['username']
-    db.execute("INSERT INTO posts (username, user_id, file) VALUES(:username, :user_id, :file)", user_id=user_id, file=filename, username=username)
+    if description == None:
+        description = " "
+    db.execute("INSERT INTO posts (username, user_id, file, description) VALUES(:username, :user_id, :file, :description)", user_id=user_id, file=filename, username=username, description=description)
 
 def table_list():
     # maak lijst met alle gebruikers om in tabel weer te geven

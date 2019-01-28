@@ -164,7 +164,8 @@ def post():
             filename = secure_filename(file.filename)
             filesort = filename.split('.')
             filesort = filesort[1]
-            post_made(session["user_id"], filename)
+            description = request.form.get("description")
+            post_made(session["user_id"], filename, description)
             post_id = db.execute("SELECT post_id FROM posts WHERE user_id =:user_id AND file = :file", user_id=session['user_id'], file=filename)
             filename = url_for('static', filename='posts/') + 'post' + str(post_id[0]['post_id']) + '.' + filesort
             filenamelocal = 'post' + str(post_id[0]['post_id']) + '.' + filesort
@@ -193,8 +194,9 @@ def preview_gif():
 def post_gif():
     if request.method == "POST":
         url = request.form.get("giftopost")
+        description = request.form.get("description")
         print(url)
-        post_made(session['user_id'], url)
+        post_made(session['user_id'], url, description)
         return redirect(url_for('homepage'))
 
 

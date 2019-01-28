@@ -7,6 +7,7 @@ post
 
     <form action="{{ url_for('post') }}" method=post enctype=multipart/form-data>
       <input type=file name=file_post>
+      <input autocomplete="off" autofocus class="form-control" name="description" placeholder="Enter your description here..." type="text"/>
       <input type=submit value=Upload>
     </form>
 
