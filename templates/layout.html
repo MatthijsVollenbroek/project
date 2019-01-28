@@ -71,7 +71,11 @@ body {
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
 <main>
+ {% if errormessage in not none %}
+ <div class="alert alert-danger" role="alert">
   {{ errormessage }}
+ </div>
+ {% endif %}
   {% block main %}{% endblock %}
 </main>
 </div>
