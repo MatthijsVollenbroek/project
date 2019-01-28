@@ -90,16 +90,6 @@ body {
   <a href="{{url_for('post')}}">New Post</a>
   <a href="{{url_for('logout')}}" title="Logout">Log out</a>
 </div>
- 
-<main>
- {% if errormessage is not none %}
- <div class="alert alert-danger" role="alert">
-  {{ errormessage }}
- </div>
- {% endif %}
-  {% block main %}{% endblock %}
-</main>
-</div>
 
 <script>
 window.onscroll = function() {myFunction()};
@@ -115,6 +105,15 @@ function myFunction() {
   }
 }
 </script>
-
+ 
+<main>
+ {% if errormessage is not none %}
+ <div class="alert alert-danger" role="alert">
+  {{ errormessage }}
+ </div>
+ {% endif %}
+  {% block main %}{% endblock %}
+</main>
+ 
 </body>
 </html>
