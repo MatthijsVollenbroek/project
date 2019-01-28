@@ -11,10 +11,10 @@
   <img src="/static/posts/post2.jpg" style="width:100%">
   <h1>{{ username }}</h1>
   <div class="dropdown">
-  <button class="dropbtn-profile" onclick="myFunction()">Bio
+  <button class="dropbtn-profile" onclick="showBio()">Bio
     <i class="fa fa-plus"></i>
   </button>
-  <div id="myDropdown" class="dropdown-content-profile">
+  <div id="bio" class="dropdown-content-profile">
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
   </div>
   <p class="title">Most liked post: {{ most_likes }}</p>
@@ -26,8 +26,8 @@
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function showBio() {
+  document.getElementById("bio").classList.toggle("show");
 }
 
 // Close the dropdown if the user clicks outside of it
