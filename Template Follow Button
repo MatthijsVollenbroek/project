@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+
+.follow-button {
+  background-color: #2e005f;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  font-family: impact;
+  border: none;
+  cursor: pointer;
+}
+
+</style>
+
+<div>
+<button class = "follow-button" onclick="myFunction()">Follow</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+</body>
+</html>
