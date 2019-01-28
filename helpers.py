@@ -169,3 +169,24 @@ def preview_GIF(query):
     link = "http://api.giphy.com/v1/gifs/search?q=" + zoekterm + "&api_key=az08ZN1d9Ek2JlYs2IVW8f1kvy7dtEDI&limit=5"
     data = json.loads(urllib.request.urlopen(link).read())
     return data
+
+def userIDtoName(user_id):
+    username = db.execute("SELECT username FROM users WHERE user_id = :user_id", user_id=user_id)[0]['username']
+    return username
+
+def recent_following(user_id):
+    following = db.execute("SELECT follows FROM followers WHERE user_id = :user_id", user_id=user_id)
+    follows = []
+    for follow in range(len(following)):
+        follows.append(following[follow]['follows'])
+    posts = []
+    for follow in follows:
+        follow_post = db.execute("SELECT * FROM posts WHERE user_id = :user_id", user_id=follow)
+        posts.append(follow_post)
+    all_posts = []
+    for uploader in posts:
+        for post in uploader:
+            all_posts.append(post)
+    all_posts_sorted = sorted(all_posts, key=itemgetter("post_date"), reverse=True)
+    print(all_posts_sorted)
+    return all_posts_sorted
