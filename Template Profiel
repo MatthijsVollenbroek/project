@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  font-family: impact;
+  background-color: #ffe0ed;
+  box-shadow: -4px -5px 30px 1px #2e005f;
+  border-width: 5px;
+  border-style: double;
+  color: #2e005f;
+}
+
+.title {
+  color: #2e005f;
+  font-size: 21px;
+}
+
+.dropbtn-profile {
+  background-color: #2e005f;
+  color: #ffe0ed;
+  padding-left: 222px;
+  padding-right: 222px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: Impact;
+}
+
+.dropbtn-profile:hover, .dropbtn-profile:focus {
+  background-color:  #460091;
+  color: #ffcfe3;
+}
+
+
+.dropdown-content-profile {
+  display: none;
+  position: absolute;
+  background-color: #ffe0ed;
+  width: 590px;
+  overflow: auto;
+  z-index: 1;
+  border-width: 5px;
+  border-style: double;
+}
+
+.dropdown-content-profile a {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+}
+
+.follow-button {
+  background-color: #2e005f;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  font-family: impact;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+  <h1>#Name</h1>
+  <div class="dropdown">
+  <button class="dropbtn-profile" onclick="myFunction()">Biography
+    <i class="fa fa-plus"></i>
+  </button>
+  <div id="myDropdown" class="dropdown-content-profile">
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+  </div>
+  <p class="title">Most likes on post: #</p>
+  <p class="title">Most dislikes on post: #</p>
+</div>
+</div>
+
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
