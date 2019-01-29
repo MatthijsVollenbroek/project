@@ -1,3 +1,52 @@
+@media only screen and (max-width: 1270px) {
+  #navbar a {
+    float: left;
+    color: #ffe0ed;
+    text-align: center;
+    padding: 20px 15px;
+    text-decoration: none;
+    font-size: 26px;
+  }
+  body {
+    margin: 0;
+    font-family: Impact;
+    font-size: medium;
+    padding-top: 55px;
+}
+}
+@media only screen and (max-width: 1200px) {
+  #navbar a {
+    float: left;
+    color: #ffe0ed;
+    text-align: center;
+    padding: 20px 15px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  body {
+    margin: 0;
+    font-family: Impact;
+    font-size: medium;
+    padding-top: 55px;
+  }
+}
+@media only screen and (max-width: 980px){
+  #navbar a {
+    float: left;
+    color: #ffe0ed;
+    text-align: center;
+    padding: 20px 15px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  body {
+    margin: 0;
+    font-family: Impact;
+    font-size: medium;
+    padding-top: 125px;
+}
+
+}
 #slider
 {
     width: 100%;
