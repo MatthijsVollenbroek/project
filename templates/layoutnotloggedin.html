@@ -23,6 +23,11 @@
 <body>
 
 <main>
+  {% if errormessage is not none %}
+     <div class="alert alert-danger" role="alert">
+        {{ errormessage }}
+     </div>
+  {% endif %}
   {% block main %}{% endblock %}
 </main>
 
