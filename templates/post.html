@@ -4,7 +4,7 @@ post
 {% endblock%}
 
 {% block main %}
-
+    <p class="text-center h1">Post a photo or GIF of your choice!</p>
     <form action="{{ url_for('post') }}" method=post enctype=multipart/form-data>
       <input type=file name=file_post>
       <input autocomplete="off" autofocus class="form-control" name="description" placeholder="Enter your description here..." type="text"/>

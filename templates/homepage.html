@@ -33,13 +33,11 @@
             </tr>
           </thead>
           <tbody>
-            <div class="nav-wrapper" style="height:80px;">
-            </div>
             {% for post in posts %}
                 <tr>
                   <th scope="row"></th>
                   <td><a href="/profile/{{ post['user_id'] }}">{{ post["username"] }}</a></td>
-                  <td><img src="{{ post['file'] }}"></td>
+                  <td><img class="postImg" src="{{ post['file'] }}"></td>
                   <td>{{ post['description'] }}</td>
                 </tr>
                 <tr>

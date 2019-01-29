@@ -4,10 +4,9 @@
     Kies GIF om te uploaden
 {% endblock %}
 {% block main %}
+    <p class="text-center h3">Choose a GIF to post or try a different search term!</p>
     <form action="{{ url_for('preview_gif') }}" method=post>
       <fieldset>
-        <div class="nav-wrapper" style="height:80px;">
-        </div>
         <div class="form-group">
           <input autocomplete="off" autofocus class="form-control" name="query" placeholder="Zoek met zoekterm op GIFs..." type="text"/>
         </div>
@@ -19,7 +18,7 @@
     {% for gif in data %}
 
             <tr>
-                <td><img src="{{ gif[1] }}"></td>
+                <td><img class="postImg" src="{{ gif[1] }}"></td>
             </tr>
             <tr>
                 <form action="{{ url_for('post_gif') }}" method=post>
