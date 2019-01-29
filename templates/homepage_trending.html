@@ -25,12 +25,52 @@
     </tr>
     <tr>
       <th scope="row"></th>
-      <td><a href="/like/{{post['post_id']}}/homepage_trending" class="btn btn-success btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Like</a> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
-      <td><a href="/dislike/{{ post['post_id']}}/homepage_trending" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" value="{{ post["post_id"]}}">Dislike</a> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>
+      <td><button class="btn btn-success btn-lg active" aria-pressed="true" onclick="postlike({{ post['post_id']}})">Like</button> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
+      <td><button class="btn btn-danger btn-lg active" aria-pressed="true" onclick="postdislike({{ post['post_id']}})">Dislike</button> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+<script>
+      var previous = null;
 
+        function postlike(postid) {
+          $.ajax({
+            url: "/like?postid="+ postid,
+            type: 'get',
+            success: function(data) {
+            if (data.success)
+              {
+                $('#likes'+postid).text(parseInt($('#likes'+postid).text()) + 1);
+
+                if (previous == 'dis'){
+                  $('#dislikes'+postid).text(parseInt($('#dislikes'+postid).text()) - 1);
+                }
+                previous = 'like';
+              }
+            }
+
+          });
+        }
+        function postdislike(postid) {
+          $.ajax({
+            url: "/dislike?postid="+ postid,
+            type: "get",
+            success: function(data) {
+              if (data.success)
+              {
+                $('#dislikes'+postid).text(parseInt($('#dislikes'+postid).text()) + 1);
+
+                if (previous == 'like'){
+                  $('#likes'+postid).text(parseInt($('#likes'+postid).text()) - 1);
+                }
+                previous = 'dis';
+
+              }
+            }
+
+          });
+        }
+      </script>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
@@ -199,29 +199,29 @@ def post_gif():
         return redirect(url_for('homepage'))
 
 
-@app.route("/like/<postid>/<dest>", methods=['GET', 'POST'])
+@app.route("/like", methods=['GET', 'POST'])
 @login_required
-def like(postid, dest):
-    user_id = session['user_id']
-    post_id = postid
-    check = post_like(user_id, post_id)
-    dest_template = dest + ".html"
-    if check == False:
-        return render_template(dest_template, errormessage="post already liked")
-    most_liked_disliked(post_id)
-    return redirect(url_for(dest))
+def like():
+    if request.method == "GET":
+        user_id = session['user_id']
+        post_id = request.args.get('postid')
+        check = post_like(user_id, post_id)
+        if check == False:
+            return jsonify(success=False)
+        most_liked_disliked(post_id)
+        return jsonify(success=True)
 
-@app.route("/dislike/<postid>/<dest>", methods=['GET', 'POST'])
+@app.route("/dislike", methods=['GET', 'POST'])
 @login_required
-def dislike(postid, dest):
-    user_id = session['user_id']
-    post_id = postid
-    dest_template = dest + ".html"
-    check = post_dislike(user_id, post_id)
-    if check == False:
-        return render_template(dest_template, errormessage="post already disliked")
-    most_liked_disliked(post_id)
-    return redirect(url_for(dest))
+def dislike():
+    if request.method == "GET":
+        user_id = session['user_id']
+        post_id = request.args.get('postid')
+        check = post_dislike(user_id, post_id)
+        if check == False:
+            return jsonify(success=False)
+        most_liked_disliked(post_id)
+        return jsonify(success=True)
 
 @app.route("/myprofile", methods=['GET', 'POST'])
 @login_required
