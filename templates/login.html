@@ -1,25 +1,83 @@
 {% extends "layout.html" %}
 
-{% block title %}
-    Log In
-{% endblock %}
 
-{% block main %}
+<html lang="en">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" ></script>
 
-  <body style="background-image:url(https://images.pexels.com/photos/2015/man-person-woman-face.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500)" id ="Photo">
-    <form action="{{ url_for('login') }}" method="post">
-        <fieldset>
-            <div class="form-group">
-                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required/>
+  <link rel="stylesheet" href="static/stylesheets/styles.css">
+</head>
+
+<body>
+
+        <!----- indicator------>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+
+          </ol>
+
+
+
+          <!-------- images ------->
+
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="https://images.pexels.com/photos/571163/pexels-photo-571163.jpeg?auto=compress&cs=tinysrgb&dpr=2&fit=crop&h=500&w=500" alt="First slide">
             </div>
-            <div class="form-group">
-                <input class="form-control" name="password" placeholder="Password" type="password" required/>
+
+            <div class="carousel-item">
+              <img class="d-block w-100" src="https://images.pexels.com/photos/1990/man-person-people-emotions.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Second slide">
             </div>
-            <div class="form-group">
-                <button class="btn btn-default" type="submit">Log In</button>
+
+            <div class="carousel-item">
+              <img class="d-block w-100" src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="Third slide">
             </div>
-        </fieldset>
+
+            <div class="carousel-item">
+              <img class="d-block w-100" src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="Third slide">
+            </div>
+
+          </div>
+
+
+          <!----- control next and previous--->
+
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+
+</div>
+                <!-------form--------->
+
+    <form action="/action_page.php" class="container">
+        <h1>Login</h1>
+
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Username" name="username" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit" class="btn">Login</button>
     </form>
 
-    </body>
-{% endblock %}
+
+
+
+
+</body>
+</html>
