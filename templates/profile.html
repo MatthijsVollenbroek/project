@@ -10,8 +10,11 @@
 <div class="card">
   <h1>{{ username }}</h1>
   <div>
-    <button class = "follow-button" onclick="myFunction()">Follow</button>
-  <p id="demo"></p>
+    {% if alreadyfollows == false %}
+    <button class = "follow-button" id="followbutton" onclick="followuser({{ userid }})">Follow</button>
+    {% else %}
+    <button class = "follow-button" id="followbutton" onclick="followuser({{ userid }})">Unfollow</button>
+    {% endif %}
   </div>
   <div class="dropdown">
   <button class="dropbtn-profile" onclick="showBio()">Bio
@@ -22,7 +25,7 @@
   </div>
   <p class="title">Most liked post: {{ most_likes }}</p>
   <p class="title">Most disliked post: {{ most_dislikes }}</p>
-  <p class="title">Followers: {{ followers }}</p>
+  <span class="title">Followers:</span><span class="title" id="followers">{{ followers }}</span>
 </div>
 </div>
 
@@ -48,8 +51,23 @@ window.onclick = function(event) {
   }
 }
 
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
+function followuser(userid) {
+  $.ajax({
+    url: "/follow?userid=" + userid,
+    type: 'get',
+    success: function(data) {
+    if (data.success)
+      {
+        document.getElementById('followbutton').innerHTML = "Unfollow";
+        $('#followers').text(parseInt($('#followers').text()) + 1);
+      }
+    else{
+      document.getElementById('followbutton').innerHTML = "Follow";
+      $('#followers').text(parseInt($('#followers').text()) - 1);
+    }
+    }
+
+  });
 }
 </script>
 </script>

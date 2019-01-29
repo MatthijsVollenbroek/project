@@ -31,6 +31,7 @@
 body {
   margin: 0;
   font-family: Impact;
+  padding-top: 210px;
 }
 
 .header {
@@ -42,6 +43,7 @@ body {
 #navbar {
   overflow: hidden;
   background-color: #2e005f;
+  z-index:500;
 }
 
 #navbar a {
@@ -196,7 +198,7 @@ body {
 </head>
 <body>
 
-<div id="navbar">
+<div id="navbar" class="fixed-top">
   <a href="{{url_for('homepage')}}">Home</a>
   <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
   <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
@@ -218,18 +220,11 @@ body {
 
 </main>
 <script>
-window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");
 var sticky = navbar.offsetTop;
 
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky");
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
+
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function dropdownFollowers() {

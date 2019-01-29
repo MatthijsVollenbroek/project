@@ -244,8 +244,21 @@ def profile(userid):
         return redirect(url_for('myprofile'))
     user_data = profile_info(userid)
     username = user_data['user_info']['username']
+    userID = user_data['user_info']['user_id']
     most_likes = user_data['user_info']['most_likes']
     most_dislikes = user_data['user_info']['most_dislikes']
     followers = user_data['user_info']['followers']
     bio = user_data['user_info']['description']
-    return render_template('profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio)
+    alreadyfollows = already_follows(session['user_id'], userID)
+    return render_template('profile.html', username=username, userid=userID, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio, alreadyfollows=alreadyfollows)
+
+@app.route("/follow", methods=['GET', 'POST'])
+@login_required
+def followuser():
+    if request.method == "GET":
+        user_id = session['user_id']
+        tofollow = request.args.get('userid')
+        check = follow(user_id, tofollow)
+        if check == False:
+            return jsonify(success=False)
+        return jsonify(success=True)

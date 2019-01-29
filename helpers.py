@@ -105,9 +105,11 @@ def already_rated(user_id, post_id):
 def follow(user_id, user_id_follows):
     # zorgt ervoor dat user persoon volgt
     if already_follows(user_id, user_id_follows) == True:
+        db.execute("DELETE FROM followers WHERE user_id = :user_id AND follows = :follows", user_id=user_id, follows=user_id_follows)
+        db.execute("UPDATE users SET followers = followers - 1 WHERE user_id = :user_id_follows", user_id_follows=user_id_follows)
         return False
     db.execute("INSERT INTO followers (user_id, follows) VALUES(:user_id, :follows)", user_id=user_id, follows=user_id_follows)
-    db.execute("UPDATE users SET followers = follwers + 1 WHERE user_id = :user_id_follows", user_id_follows=user_id_follows)
+    db.execute("UPDATE users SET followers = followers + 1 WHERE user_id = :user_id_follows", user_id_follows=user_id_follows)
     return True
 
 def already_follows(user_id, user_id_follows):
