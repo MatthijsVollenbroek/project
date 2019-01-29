@@ -5,7 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import os
 from werkzeug.utils import secure_filename
-import time, threading
+import datetime
 
 from helpers import *
 
@@ -208,8 +208,8 @@ def like(postid, dest):
     dest_template = dest + ".html"
     if check == False:
         return render_template(dest_template, errormessage="post already liked")
-    else:
-        return redirect(url_for(dest))
+    most_liked_disliked(post_id)
+    return redirect(url_for(dest))
 
 @app.route("/dislike/<postid>/<dest>", methods=['GET', 'POST'])
 @login_required
@@ -220,8 +220,8 @@ def dislike(postid, dest):
     check = post_dislike(user_id, post_id)
     if check == False:
         return render_template(dest_template, errormessage="post already disliked")
-    else:
-        return redirect(url_for(dest))
+    most_liked_disliked(post_id)
+    return redirect(url_for(dest))
 
 @app.route("/myprofile", methods=['GET', 'POST'])
 @login_required

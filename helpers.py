@@ -23,19 +23,20 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-def most_liked(user_id):
-    # returned voor bepaalde user_id meest gelikete post
+def most_liked_disliked(post_id):
+    # na liken of disliken wordt most_liked en most_disliked van poster geupdate
+    user_id = db.execute("SELECT user_id FROM posts WHERE post_id = :post_id", post_id=post_id)[0]['user_id']
     post_likes = db.execute("SELECT total_likes from posts WHERE user_id = :user_id", user_id=user_id)
-    newlist = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)
-    return newlist[0]['post_id']
-
-
-def most_disliked(user_id):
-    # returned voor bepaalde user_id meest gedislikete post
+    list_likes = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)[:1]
+    print(list_likes)
     post_dislikes = db.execute("SELECT total_dislikes from posts WHERE user_id = :user_id", user_id=user_id)
-    newlist = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)
-    return newlist[0]['post_id']
-
+    list_dislikes = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)[:1]
+    posts = []
+    posts.append(list_likes)
+    posts.append(list_dislikes)
+    db.execute("UPDATE users SET most_likes = :most_likes WHERE user_id=:user_id", most_likes=posts[0][0]['total_likes'], user_id=user_id)
+    db.execute("UPDATE users SET most_dislikes = :most_dislikes WHERE user_id=:user_id", most_dislikes=posts[1][0]['total_dislikes'], user_id=user_id)
+    return True
 
 def register_user(user_name, password):
     # check of gebruikersnaam al in gebruik is
