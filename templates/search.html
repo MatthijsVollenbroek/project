@@ -19,6 +19,8 @@
     </tr>
   </thead>
   <tbody>
+    <div class="nav-wrapper" style="height:80px;">
+    </div>
     {% for user in users %}
     <tr>
       <td><a href="/profile/{{ user['user_id'] }}">{{ user["username"] }}</a></td>
