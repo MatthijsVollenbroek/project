@@ -15,10 +15,13 @@
     <i class="fa fa-plus"></i>
   </button>
   <div id="bio" class="dropdown-content-profile">
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+    <p>{{ bio }}</p>
   </div>
+  <form action="{{ url_for('myprofile') }}" method="post">
+    <input autocomplete="off" autofocus class="form-control" name="newbio" placeholder="Make a new bio" type="text" required/><button class="btn btn-default" type="submit">Edit bio</button>
   <p class="title">Most liked post: {{ most_likes }}</p>
   <p class="title">Most disliked post: {{ most_dislikes }}</p>
+  <p class="title">Followers: {{ followers }}</p>
 </div>
 </div>
 

@@ -207,3 +207,6 @@ def followers(user_id):
         follow_list_usable.append(userinfo)
     return follow_list_usable
 
+def editbio(user_id, bio):
+    db.execute("UPDATE users SET description = :description WHERE user_id = :user_id", description=bio, user_id=user_id)
+    return True

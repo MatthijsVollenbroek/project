@@ -230,15 +230,22 @@ def myprofile():
     username = user_data['user_info']['username']
     most_likes = user_data['user_info']['most_likes']
     most_dislikes = user_data['user_info']['most_dislikes']
-    return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)
+    followers = user_data['user_info']['followers']
+    if request.method == 'POST':
+        bio = request.form.get("newbio")
+        editbio(session['user_id'], bio)
+    bio = profile_info(session['user_id'])['user_info']['description']
+    return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio)
 
 @app.route("/profile/<userid>", methods=['GET', 'POST'])
 @login_required
 def profile(userid):
+    if int(userid) == session['user_id']:
+        return redirect(url_for('myprofile'))
     user_data = profile_info(userid)
     username = user_data['user_info']['username']
     most_likes = user_data['user_info']['most_likes']
     most_dislikes = user_data['user_info']['most_dislikes']
-    if userid == session['user_id']:
-        return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)
-    return render_template('profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None)
+    followers = user_data['user_info']['followers']
+    bio = user_data['user_info']['description']
+    return render_template('profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio)
