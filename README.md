@@ -68,4 +68,12 @@ Maar ook het doorgeven van de juiste variabelen voor de html pagina's gebeurd hi
 ### project.db
 Dit is de database van de site. Hierin worden onder andere de gebruikersgegevens opgeslagen, wie precies wie volgt en de postgegevens.
 
+### images
+In deze folder staan de afbeeldingen die gebruikt zijn in de markdown bestanden
+
+### templates
+In deze folder staan de html bestanden van de site
+
+### static
+In deze folder staan de map posts (waarin de geüploade afbeeldingen zijn opgeslagen), de map js (waarin onze eigen like script staat in sitescripts.js en overige scripts die gedownload zijn van MD bootstrap voor de search pagina), de map css (waarin onze eigen stylesheets/styles.css te vinden is, maar ook de styles van MD bootstrap gedownload zijn).
 
