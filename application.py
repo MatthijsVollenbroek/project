@@ -251,7 +251,8 @@ def profile(userid):
     followers = user_data['user_info']['followers']
     bio = user_data['user_info']['description']
     alreadyfollows = already_follows(session['user_id'], userID)
-    return render_template('profile.html', username=username, userid=userID, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio, alreadyfollows=alreadyfollows)
+    posts=liked_disliked_profile(int(userid))
+    return render_template('profile.html', username=username, userid=userID, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio, alreadyfollows=alreadyfollows, posts=posts)
 
 @app.route("/follow", methods=['GET', 'POST'])
 @login_required

@@ -23,10 +23,15 @@
   <div id="bio" class="dropdown-content-profile">
     <p>{{ bio }}</p>
   </div>
+  {% if posts|length > 0 %}
+  <div><center><img class="postImg" src="{{ posts[0]['file'] }}"></center></div>
+  {% endif %}
   <p class="title">Most liked post: {{ most_likes }}</p>
+  {% if posts|length > 0 %}
+  <div><center><img class="postImg" src="{{ posts[1]['file'] }}"></center></div>
+  {% endif %}
   <p class="title">Most disliked post: {{ most_dislikes }}</p>
-  <span class="title">Followers:</span><span class="title" id="followers">{{ followers }}</span>
-</div>
+  <p class="title">Followers: {{ followers }}</p></div>
 </div>
 
 

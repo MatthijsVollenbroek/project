@@ -30,11 +30,10 @@ def most_liked_disliked(post_id):
     list_likes = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)[:1]
     post_dislikes = db.execute("SELECT total_dislikes from posts WHERE user_id = :user_id", user_id=user_id)
     list_dislikes = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)[:1]
-    posts = []
-    posts.append(list_likes)
-    posts.append(list_dislikes)
-    db.execute("UPDATE users SET most_likes = :most_likes WHERE user_id=:user_id", most_likes=posts[0][0]['total_likes'], user_id=user_id)
-    db.execute("UPDATE users SET most_dislikes = :most_dislikes WHERE user_id=:user_id", most_dislikes=posts[1][0]['total_dislikes'], user_id=user_id)
+    if len(list_likes) != 0:
+        db.execute("UPDATE users SET most_likes = :most_likes WHERE user_id=:user_id", most_likes=list_likes[0]['total_likes'], user_id=user_id)
+    if len(list_dislikes) != 0:
+        db.execute("UPDATE users SET most_dislikes = :most_dislikes WHERE user_id=:user_id", most_dislikes=list_dislikes[0]['total_dislikes'], user_id=user_id)
     return True
 
 def register_user(user_name, password):
@@ -219,7 +218,7 @@ def liked_disliked_profile(profileID):
     post_dislikes = db.execute("SELECT * from posts WHERE user_id = :user_id", user_id=profileID)
     list_dislikes = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)[:1]
     posts = []
-    posts.append(list_likes[0])
-    posts.append(list_dislikes[0])
-    print (posts)
+    if len(post_likes) != 0:
+        posts.append(list_likes[0])
+        posts.append(list_dislikes[0])
     return posts

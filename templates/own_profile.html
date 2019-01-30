@@ -19,9 +19,13 @@
   <form action="{{ url_for('myprofile') }}" method="post">
     <input autocomplete="off" autofocus class="form-control" name="newbio" placeholder="Make a new bio" type="text" required/><button class="btn btn-default" type="submit">Edit bio</button>
   </form>
+  {% if posts|length > 0 %}
   <div><center><img class="postImg" src="{{ posts[0]['file'] }}"></center></div>
+  {% endif %}
   <p class="title">Most liked post: {{ most_likes }}</p>
+  {% if posts|length > 0 %}
   <div><center><img class="postImg" src="{{ posts[1]['file'] }}"></center></div>
+  {% endif %}
   <p class="title">Most disliked post: {{ most_dislikes }}</p>
   <p class="title">Followers: {{ followers }}</p>
 </div>
