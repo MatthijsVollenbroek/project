@@ -28,7 +28,6 @@ def most_liked_disliked(post_id):
     user_id = db.execute("SELECT user_id FROM posts WHERE post_id = :post_id", post_id=post_id)[0]['user_id']
     post_likes = db.execute("SELECT total_likes from posts WHERE user_id = :user_id", user_id=user_id)
     list_likes = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)[:1]
-    print(list_likes)
     post_dislikes = db.execute("SELECT total_dislikes from posts WHERE user_id = :user_id", user_id=user_id)
     list_dislikes = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)[:1]
     posts = []
@@ -213,3 +212,14 @@ def followers(user_id):
 def editbio(user_id, bio):
     db.execute("UPDATE users SET description = :description WHERE user_id = :user_id", description=bio, user_id=user_id)
     return True
+
+def liked_disliked_profile(profileID):
+    post_likes = db.execute("SELECT * from posts WHERE user_id = :user_id", user_id=profileID)
+    list_likes = sorted(post_likes, key=itemgetter('total_likes'), reverse=True)[:1]
+    post_dislikes = db.execute("SELECT * from posts WHERE user_id = :user_id", user_id=profileID)
+    list_dislikes = sorted(post_dislikes, key=itemgetter('total_dislikes'), reverse=True)[:1]
+    posts = []
+    posts.append(list_likes[0])
+    posts.append(list_dislikes[0])
+    print (posts)
+    return posts
