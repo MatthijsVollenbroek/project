@@ -7,9 +7,9 @@
 {% block main %}
   <div class="container-fluid">
     <div class="row">
-    <div class="col-12" text-allign="center">
-      <p class="text-center h1">Welcome back, {{ username }}!</p>
-    </div>
+      <div class="col-12" text-allign="center">
+        <p class="text-center h3">Welcome back, {{ username }}!</p>
+      </div>
     </div>
     <div class="row">
       <div class="col-3">
@@ -26,67 +26,21 @@
       </div>
       <div class="col-9">
         {% for post in posts %}
-        <div class="card">
-          <h1><a href="/profile/{{ post['user_id'] }}">{{ post["username"] }}</a></h1>
-        <div class="postdiv">
-          <img class="postImg" src="{{ post['file'] }}">
-          <span>{{ post['description'] }}</span>
-        </div>
-        <div>
-          <button class="btn btn-success btn-lg active" aria-pressed="true" onclick="postlike({{ post['post_id']}})">Like</button> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
-          <button class="btn btn-danger btn-lg active" aria-pressed="true" onclick="postdislike({{ post['post_id']}})">Dislike</button> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>    </tr>
-        </div>
-        </div>
+          <div class="card">
+            <h1><a href="/profile/{{ post['user_id'] }}">{{ post["username"] }}</a></h1>
+            <div class="postdiv">
+              <center><img class="postImg" src="{{ post['file'] }}"></center>
+              <span>{{ post['description'] }}</span>
+            </div>
+            <div>
+              <button class="btn btn-success btn-lg active" aria-pressed="true" onclick="postlike({{ post['post_id']}})">Like</button> <span id="likes{{post["post_id"]}}" class="text">{{ post['total_likes'] }}</span></td>
+              <button class="btn btn-danger btn-lg active" aria-pressed="true" onclick="postdislike({{ post['post_id']}})">Dislike</button> <span id="dislikes{{post["post_id"]}}" class="text">{{ post['total_dislikes'] }}</span></td>    </tr>
+            </div>
+          </div>
         {% endfor %}
       </div>
-      <script>
-      var previous = null;
+    </div>
+  </div>
 
-        function postlike(postid) {
-          $.ajax({
-            url: "/like?postid="+ postid,
-            type: 'get',
-            success: function(data) {
-            if (data.success)
-              {
-                $('#likes'+postid).text(parseInt($('#likes'+postid).text()) + 1);
-
-                if (previous == 'dis'){
-                  $('#dislikes'+postid).text(parseInt($('#dislikes'+postid).text()) - 1);
-                }
-                previous = 'like';
-              }
-            }
-
-          });
-        }
-        function postdislike(postid) {
-          $.ajax({
-            url: "/dislike?postid="+ postid,
-            type: "get",
-            success: function(data) {
-              if (data.success)
-              {
-                $('#dislikes'+postid).text(parseInt($('#dislikes'+postid).text()) + 1);
-
-                if (previous == 'like'){
-                  $('#likes'+postid).text(parseInt($('#likes'+postid).text()) - 1);
-                }
-                previous = 'dis';
-
-              }
-            }
-
-          });
-        }
-      </script>
-      <style>
-
-  .postdiv {
-    margin: 0 auto 0 auto;
-  }
-
-
-</style>
 
 {% endblock %}
