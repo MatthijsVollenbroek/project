@@ -90,3 +90,8 @@ In deze folder staan de html bestanden van de site
 ### static
 In deze folder staan de map posts (waarin de geüploade afbeeldingen zijn opgeslagen), de map js (waarin onze eigen like script staat in sitescripts.js en overige scripts die gedownload zijn van MD bootstrap voor de search pagina), de map css (waarin de styles van MD bootstrap gedownload zijn) en stylesheets (waarin onze eigen styles.ccs staan)
 
+## Rolverdeling
+- Matthijs: back-end van de site (helpers, application en scripts en de opmaak daarvan met comments)
+- Thomas: Ontwerp en front-end van de site (ontwerpen van de layout, styles, technisch ontwerp schetsen, etc.)
+- Sam: Bugfixes en PAV opdrachten, aantal html bestanden gemaakt (zoals login en register).
+- Tim: Front-end ontwerp (carousel, opsporen fouten in html code, opmaak alle html code)
