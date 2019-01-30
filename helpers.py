@@ -70,12 +70,12 @@ def post_like(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
         db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 2)", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes + 1, likes_today = likes_today + 1 WHERE post_id = :post_id", post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al dislike heeft gegeven op post
     elif rating == 3:
         db.execute("UPDATE likes_dislikes SET like_dislike = 2 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes + 1, likes_today = likes_today + 1, total_dislikes = total_dislikes - 1, dislikes_today = dislikes_today - 1 WHERE post_id = :post_id", post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes + 1, total_dislikes = total_dislikes - 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
     else:
@@ -84,12 +84,12 @@ def post_dislike(user_id, post_id):
     rating = already_rated(user_id, post_id)
     if rating == False:
         db.execute("INSERT INTO likes_dislikes (user_id, post_id, like_dislike) VALUES(:user_id, :post_id, 3)", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1, dislikes_today = dislikes_today + 1 WHERE post_id =:post_id", post_id=post_id)
+        db.execute("UPDATE posts SET total_dislikes = total_dislikes + 1 WHERE post_id =:post_id", post_id=post_id)
         return True
     # als user al like heeft gegeven op post
     elif rating == 2:
         db.execute("UPDATE likes_dislikes SET like_dislike = 3 WHERE user_id = :user_id AND post_id = :post_id", user_id=user_id, post_id=post_id)
-        db.execute("UPDATE posts SET total_likes = total_likes - 1, likes_today = likes_today - 1, total_dislikes = total_dislikes + 1, dislikes_today = dislikes_today + 1 WHERE post_id = :post_id", post_id=post_id)
+        db.execute("UPDATE posts SET total_likes = total_likes - 1, total_dislikes = total_dislikes + 1 WHERE post_id = :post_id", post_id=post_id)
         return True
     # als user al dislike heeft gegeven op post
     else:
@@ -138,20 +138,20 @@ def table_list():
 def recent_posts():
     posts = db.execute("SELECT * from posts")
     posts_recent = sorted(posts, key=itemgetter("post_date"), reverse=True)
-    posts = posts_recent[:10]
+    posts = posts_recent[:20]
     return posts
 
 def trending_shame(versie):
     posts = db.execute("SELECT * from posts")
-    posts_likes = sorted(posts, key=itemgetter('likes_today'), reverse=True)
-    posts_dislikes = sorted(posts, key=itemgetter('dislikes_today'), reverse=True)
+    posts_likes = sorted(posts, key=itemgetter('total_likes'), reverse=True)
+    posts_dislikes = sorted(posts, key=itemgetter('total_dislikes'), reverse=True)
     posts_likes = posts_likes[:10]
     posts_dislikes = posts_dislikes[:10]
     likes_temp = []
     dislikes_temp = []
     for post in posts_likes:
         if post in posts_dislikes:
-            if post['likes_today'] >= post['dislikes_today']:
+            if post['total_likes'] >= post['total_dislikes']:
                 likes_temp.append(post)
             else:
                 dislikes_temp.append(post)
@@ -160,8 +160,8 @@ def trending_shame(versie):
     for post in posts_dislikes:
         if post not in posts_likes:
             dislikes_temp.append(post)
-    likes_temp = sorted(likes_temp, key=itemgetter('likes_today'), reverse=True)
-    dislikes_temp = sorted(dislikes_temp, key=itemgetter('dislikes_today'), reverse=True)
+    likes_temp = sorted(likes_temp, key=itemgetter('total_likes'), reverse=True)
+    dislikes_temp = sorted(dislikes_temp, key=itemgetter('total_dislikes'), reverse=True)
     if versie == 'trending':
         return likes_temp[:5]
     else:
