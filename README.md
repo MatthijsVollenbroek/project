@@ -10,25 +10,36 @@ Per account wordt bijgehouden hoeveel likes hun meest gelikete post heeft en hoe
 ## De pagina's op de site
 ### Login/Register
 Aanmelden als nieuwe gebruiker of inloggen als een bestaande gebeurt hier. Meerdere checks om te kijken dat de ingevulde velden correct zijn ingevuld en of de gegevens kloppen. Op de achtergrond een mooie carousel met 3 afbeeldingen
+![Login](images/login.PNG)
+![Register](images/register.PNG)
 ### Home
 Zodra je ingelogd bent kom je hier terecht. Op deze pagina vind je een uitklapbaar volgend lijstje, waarin alle accounts staan die jij volgt. Je kan op een naam klikken en naar hun profielpagina gaan.
 Op deze pagina is het ook mogelijk om de recente posts te zien van de mensen die jij volgt (en van jezelf).
+![Home](images/homepage.PNG)
 ### Wall of Fame (trending)
 Hier worden de 5 meest gelikete foto's weergegeven, als een foto meer dislikes heeft dan likes, kan deze niet verschijnen op trending.
+![Trending](images/fame.PNG)
 ### Wall of Shame
 Hier worden de 5 meest gedislikete foto's weergegeven, als een foto meer likes dan dislikes heeft, kan deze niet verschijnen op de Hall of Shame.
+![Shame](images/shame.PNG)
 ### Recent
 Hier worden de 10 meest recent geuploade posts weergegeven, onafhankelijk van het feit of je iemand volgt of niet. Een goede plek om nieuwe accounts te leren kennen.
+![Recent](images/recent.PNG)
 ### Searching page
 Hier is een soort leaderboard te vinden van de gebruikers van de site. Je kan ook vrienden vinden om ze te volgen of te kijken naar hun stats.
 Je kan daarnaast sorteren op accounts met de meeste likes, meeste dislikes, meeste volgers en op naam.
+![Search](images/search.PNG)
 ### New Post
 Hier kan je een eigen post maken! Je kan kiezen tussen een eigen afbeelding te uploaden, of te zoeken op GIFs met de GIPHY API. Een beschrijving toevoegen is ook mogelijk.
+![Post](images/new post.PNG)
 ### Preview GIFS
 Hier zie je 10 zoekresultaten van jouw GIPHY zoekterm. Niet tevreden over de resultaten? Dan kan je bovenin een andere zoekterm proberen.
+![Preview](images/gifpreview.PNG)
 ### (My) Profile
 Hier zie je per account de username, de meeste likes die dat account ooit heeft gehaald, de meeste dislikes en het aantal volgers. Ook kan je de bio lezen van het account.
 Bij My profile kan je deze bio editen naar jouw wens.
+![MyProfile](images/myprofile.PNG)
+![Profile](images/profile.PNG)
 
 ## Features:
 -	Post liken en disliken
