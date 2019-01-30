@@ -17,16 +17,16 @@
     </form>
     {% for gif in data %}
 
-            <tr>
-                <td><img class="postImg" src="{{ gif[1] }}"></td>
-            </tr>
-            <tr>
-                <form action="{{ url_for('post_gif') }}" method=post>
-                    <div class="form-group">
-                        <input autocomplete="off" class="form-control" name="description" placeholder="Enter your description here..." type="text"/>
-                        <button class="btn btn-success btn-lg active" type="submit" aria-pressed="true" value="{{ gif[0] }}" name="giftopost">Post</a>
-                    </div>
-                </form>
-            </tr>
+    <tr>
+        <td><img class="postImg" src="{{ gif[1] }}"></td>
+    </tr>
+    <tr>
+        <form action="{{ url_for('post_gif') }}" method=post>
+            <div class="form-group">
+                <input autocomplete="off" class="form-control" name="description" placeholder="Enter your description here..." type="text"/>
+                <button class="btn btn-success btn-lg active" type="submit" aria-pressed="true" value="{{ gif[0] }}" name="giftopost">Post</a>
+            </div>
+        </form>
+    </tr>
     {% endfor %}
 {% endblock %}

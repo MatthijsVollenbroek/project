@@ -2,83 +2,83 @@
 <html>
 <head>
  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
-        <meta charset="utf-8"/>
-        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+    <meta charset="utf-8"/>
+    <meta content="initial-scale=1, width=device-width" name="viewport"/>
         <!-- MD bootstrap -- !>
          <!-- Font Awesome -->
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
           <!-- Bootstrap core CSS -->
-          <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
           <!-- Material Design Bootstrap -->
-          <link href="static/css/mdb.min.css" rel="stylesheet">
+    <link href="static/css/mdb.min.css" rel="stylesheet">
 
 
           <!-- MDBootstrap Datatables  -->
-          <link href="static/css/addons/datatables.min.css" rel="stylesheet">
+    <link href="static/css/addons/datatables.min.css" rel="stylesheet">
 
 
         <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Your custom styles (optional) -->
-        <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet" type="text/css">
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
 
-<div id="navbar" class="fixed-top">
-  <a href="{{url_for('homepage')}}">Home</a>
-  <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
-  <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
-  <a href="{{url_for('homepage_recent')}}"title="Relevant"><i class="fa fa-exclamation" aria-hidden="true"></i>Recent</a>
-  <a href="{{url_for('search')}}">Searching Page</a>
-  <a href="{{url_for('post')}}">New Post</a>
-  <a href="{{url_for('myprofile')}}">My Profile</a>
-  <a href="{{url_for('logout')}}" title="Logout">Log out</a>
-</div>
+    <div id="navbar" class="fixed-top">
+      <a href="{{url_for('homepage')}}">Home</a>
+      <a href="{{url_for('homepage_trending')}}"title="Trending"><i class="fa fa-smile-o" aria-hidden="true"></i>Trending Page</a>
+      <a href="{{url_for('homepage_shame')}}"title="Shame"><i class="fa fa-frown-o" aria-hidden="true"></i>Wall Of Shame</a>
+      <a href="{{url_for('homepage_recent')}}"title="Relevant"><i class="fa fa-exclamation" aria-hidden="true"></i>Recent</a>
+      <a href="{{url_for('search')}}">Searching Page</a>
+      <a href="{{url_for('post')}}">New Post</a>
+      <a href="{{url_for('myprofile')}}">My Profile</a>
+      <a href="{{url_for('logout')}}" title="Logout">Log out</a>
+    </div>
 
-<main>
+    <main>
 
- {% if errormessage is not none %}
- <div class="alert alert-danger" role="alert">
-  {{ errormessage }}
- </div>
- {% endif %}
- {% block main %}{% endblock %}
+        {% if errormessage is not none %}
+        <div class="alert alert-danger" role="alert">
+         {{ errormessage }}
+        </div>
+        {% endif %}
+        {% block main %}{% endblock %}
 
-</main>
-<script>
+    </main>
+    <script>
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
 
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropdownFollowers() {
-  document.getElementById("dropdownfollow").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function dropdownFollowers() {
+      document.getElementById("dropdownfollow").classList.toggle("show");
     }
-  }
-};
-</script>
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    };
+    </script>
 </body>
 </html>

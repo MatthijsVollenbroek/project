@@ -4,22 +4,22 @@ post
 {% endblock%}
 
 {% block main %}
-    <p class="text-center h1">Post a photo or GIF of your choice!</p>
-    <form action="{{ url_for('post') }}" method=post enctype=multipart/form-data>
-      <input type=file name=file_post>
-      <input autocomplete="off" autofocus class="form-control" name="description" placeholder="Enter your description here..." type="text"/>
-      <input type=submit value=Upload>
-    </form>
+  <p class="text-center h1">Post a photo or GIF of your choice!</p>
+  <form action="{{ url_for('post') }}" method=post enctype=multipart/form-data>
+    <input type=file name=file_post>
+    <input autocomplete="off" autofocus class="form-control" name="description" placeholder="Enter your description here..." type="text"/>
+    <input type=submit value=Upload>
+  </form>
 
-    <form action="{{ url_for('preview_gif') }}" method=post>
-      <fieldset>
-        <div class="form-group">
-          <input autocomplete="off" autofocus class="form-control" name="query" placeholder="Zoek met zoekterm op GIFs..." type="text"/>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-default" type="submit">Search</button>
-        </div>
-      </fieldset>
-    </form>
+  <form action="{{ url_for('preview_gif') }}" method=post>
+    <fieldset>
+      <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="query" placeholder="Zoek met zoekterm op GIFs..." type="text"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-default" type="submit">Search</button>
+      </div>
+    </fieldset>
+  </form>
 
 {% endblock %}
