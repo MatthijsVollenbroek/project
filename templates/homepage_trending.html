@@ -8,7 +8,7 @@
   <p class="text-center h3">Top 5 most liked posts</p>
   {% for post in posts %}
     <div class="card">
-        <h1><a href="/profile/{{ post['user_id'] }}">{{ post["username"] }}</a></h1>
+        <h1><a href="/profile{{ post['user_id'] }}">{{ post["username"] }}</a></h1>
       <div class="postdiv">
         <center><img class="postImg" src="{{ post['file'] }}"></center>
         <span>{{ post['description'] }}</span>

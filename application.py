@@ -272,7 +272,7 @@ def myprofile():
     return render_template('own_profile.html', username=username, most_likes=most_likes, most_dislikes=most_dislikes, errormessage=None, followers=followers, bio=bio, posts=posts)
 
 
-@app.route("/profile/<userid>", methods=['GET', 'POST'])
+@app.route("/profile<userid>", methods=['GET', 'POST'])
 @login_required
 def profile(userid):
     # indien link eigen userid bevat, automatisch redirecten naar my profile
