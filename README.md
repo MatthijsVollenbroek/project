@@ -8,6 +8,8 @@
 - Door jouw post op de 'hall of fame' of 'hall of shame' tegen te komen
 Per account wordt bijgehouden hoeveel likes hun meest gelikete post heeft en hoeveel dislikes hun meest gedislikete post heeft. Op die manier komt er een vorm van competitie in de site waarbij je jouw scores met die van anderen kan vergelijken!
 ## De pagina's op de site
+### Login/Register
+Aanmelden als nieuwe gebruiker of inloggen als een bestaande gebeurt hier. Meerdere checks om te kijken dat de ingevulde velden correct zijn ingevuld en of de gegevens kloppen.
 ### Home
 Zodra je ingelogd bent kom je hier terecht. Op deze pagina vind je een uitklapbaar volgend lijstje, waarin alle accounts staan die jij volgt. Je kan op een naam klikken en naar hun profielpagina gaan.
 Op deze pagina is het ook mogelijk om de recente posts te zien van de mensen die jij volgt (en van jezelf).
