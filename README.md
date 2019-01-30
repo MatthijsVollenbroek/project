@@ -31,7 +31,7 @@ Je kan daarnaast sorteren op accounts met de meeste likes, meeste dislikes, mees
 ![Search](images/search.PNG)
 ### New Post
 Hier kan je een eigen post maken! Je kan kiezen tussen een eigen afbeelding te uploaden, of te zoeken op GIFs met de GIPHY API. Een beschrijving toevoegen is ook mogelijk.
-![Post](images/new post.PNG)
+![Post](images/newpost.PNG)
 ### Preview GIFS
 Hier zie je 10 zoekresultaten van jouw GIPHY zoekterm. Niet tevreden over de resultaten? Dan kan je bovenin een andere zoekterm proberen.
 ![Preview](images/gifpreview.PNG)
