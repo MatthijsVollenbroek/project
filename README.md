@@ -8,6 +8,8 @@
 - Door jouw post op de 'hall of fame' of 'hall of shame' tegen te komen
 Per account wordt bijgehouden hoeveel likes hun meest gelikete post heeft en hoeveel dislikes hun meest gedislikete post heeft. Op die manier komt er een vorm van competitie in de site waarbij je jouw scores met die van anderen kan vergelijken!
 ## De pagina's op de site
+### Login/Register
+Aanmelden als nieuwe gebruiker of inloggen als een bestaande gebeurt hier. Meerdere checks om te kijken dat de ingevulde velden correct zijn ingevuld en of de gegevens kloppen. Op de achtergrond een mooie carousel met 3 afbeeldingen
 ### Home
 Zodra je ingelogd bent kom je hier terecht. Op deze pagina vind je een uitklapbaar volgend lijstje, waarin alle accounts staan die jij volgt. Je kan op een naam klikken en naar hun profielpagina gaan.
 Op deze pagina is het ook mogelijk om de recente posts te zien van de mensen die jij volgt (en van jezelf).
@@ -68,4 +70,12 @@ Maar ook het doorgeven van de juiste variabelen voor de html pagina's gebeurd hi
 ### project.db
 Dit is de database van de site. Hierin worden onder andere de gebruikersgegevens opgeslagen, wie precies wie volgt en de postgegevens.
 
+### images
+In deze folder staan de afbeeldingen die gebruikt zijn in de markdown bestanden
+
+### templates
+In deze folder staan de html bestanden van de site
+
+### static
+In deze folder staan de map posts (waarin de geüploade afbeeldingen zijn opgeslagen), de map js (waarin onze eigen like script staat in sitescripts.js en overige scripts die gedownload zijn van MD bootstrap voor de search pagina), de map css (waarin de styles van MD bootstrap gedownload zijn) en stylesheets (waarin onze eigen styles.ccs staan)
 
