@@ -36,7 +36,7 @@ Hier kan je een eigen post maken! Je kan kiezen tussen een eigen afbeelding te u
 Hier zie je 10 zoekresultaten van jouw GIPHY zoekterm. Niet tevreden over de resultaten? Dan kan je bovenin een andere zoekterm proberen.
 ![Preview](images/gifpreview.PNG)
 ### (My) Profile
-Hier zie je per account de username, de meeste likes die dat account ooit heeft gehaald, de meeste dislikes en het aantal volgers. Ook kan je de bio lezen van het account.
+Hier zie je per account de username, de meeste likes die dat account ooit heeft gehaald, de meeste dislikes en het aantal volgers. Ook kan je de bio lezen van het account. Indien je op je eigen naam klikt word je automatisch geredirect naar 'my profile' of je klikt zelf bovenaan op my profile.
 Bij My profile kan je deze bio editen naar jouw wens.
 ![MyProfile](images/myprofile.PNG)
 ![Profile](images/profile.PNG)
@@ -95,3 +95,6 @@ In deze folder staan de map posts (waarin de geüploade afbeeldingen zijn opgesl
 - Thomas: Ontwerp en front-end van de site (ontwerpen van de layout, styles, technisch ontwerp schetsen, etc.)
 - Sam: Bugfixes en PAV opdrachten, aantal html bestanden gemaakt (zoals login en register).
 - Tim: Front-end ontwerp (carousel, opsporen fouten in html code, opmaak alle html code)
+
+## Product video:
+https://youtu.be/-wGUraz-tNI
